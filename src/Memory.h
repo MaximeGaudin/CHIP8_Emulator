@@ -17,16 +17,17 @@
  */
 
 /**
-  * @brief Memory.c header : Define all functions, variables and defines for memory management.
-  * @version 0.1
-  * @date December 12, 2010
-  * @author Maxime Gaudin
-  */
+ * @file Memory.c
+ * @brief Define all functions, variables and defines for memory management.
+ * @version 0.1
+ * @date December 12, 2010
+ * @author Maxime Gaudin
+ */
 
 #ifndef MEMORY_HEADER
 #define MEMORY_HEADER
 
-///@brief Specifies where memory starts (0x0, what a surprise isn't it ??).
+/// @brief Specifies where memory starts (0x0, what a surprise isn't it ??).
 #define RESERVED_MEMORY_START 0x0
 /// @brief Specifies where the memory stops.
 #define RESERVED_MEMORY_STOP 0x200
@@ -57,25 +58,27 @@ static unsigned char* memory;
 /* ========================================================== */
 
 /**
-  * @brief Initialize memory to 0
-  */
+ * @brief Initialize memory to 0
+ * @return 0 if success, 1 otherwise.
+ */
 int setupMemory();
 
 /**
-  * @brief write [len] bytes from [data] into memory at adress [addr]
-  * @param [in] addr : Address where data will be written
-  * @param [in] data : Pointer to data buffer
-  * @param [in] len : Number of byte written
-  * @return : 0 if success, 1 otherwise.
-  */
+ * @brief write [len] bytes from [data] into memory at adress [addr]
+ * @param [in] addr Address where data will be written
+ * @param [in] data Pointer to data buffer
+ * @param [in] len Number of byte written
+ * @return 0 if success, 1 otherwise.
+ */
 int write(unsigned short addr, char* const data, unsigned int len);
 
 /**
-  * @brief Read [len] bytes of data from address [addr] to buffer
-  * @param [in] addr : Address where rea
-  * @param [in] len : Number of bytes read
-  * @param [out] buffer : Pointer to the data buffer
-  */
+ * @brief Read [len] bytes of data from address [addr] to buffer
+ * @param [in] addr Address where rea
+ * @param [in] len Number of bytes read
+ * @param [out] buffer Pointer to the data buffer
+ * @return 0 if success, 1 otherwise.
+ */
 int read(short addr, unsigned short len, char* const buffer);
 
 #endif // MEMORY_HEADER
