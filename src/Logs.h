@@ -16,31 +16,20 @@
  *		Author : Maxime Gaudin
  */
 
-int setupMemory() {
-	I = delay = sound = 0;
-	
-	registers = (char*)calloc(MAX_REGISTERS, sizeof(char));	
-	if(registers == NULL) return 1;
+enum DEBUG_LEVELS { ERROR = 0, WARNING = 1, DRAWING = 2, DISASSEMBLING = 3 };
 
-	memory = (char*)calloc(DATA_SPACE_STOP, sizeof(char));	
-	if(memory == NULL) return 1;
-}
+static int log_initialized = 0;
 
+#define DEFAULT_DEBUG_LEVEL 1
+static unsigned char debug_level;
 
-int write(unsigned short addr, char* const data, unsigned int len) {
-	if(addr + len < DATA_SPACE_STOP) {
-		memcpy(memory + addr, data, len);
-		return 0;
-	}
+#define DEFAULT_OUTPUT_FILE "DEBUG_LOGS"
+static char* output_file;
 
-	return 1;
-}
+void setupLogs();
+void setupLogs(unsigned char debugLevel);
+void setupLogs(unsigned char debugLevel, char* outputFile);
 
-int read(short addr, unsigned short len, char* const buffer) {
-	if(addr + len < DATA_SPACE_STOP) {
-		memcpy(buffer, memory + addr, len)
-		return 0;
-	}
+void closeLogs();
 
-	return 1;
-}
+void addEntry(DEBUG_LEVELS level, const char* const message);
