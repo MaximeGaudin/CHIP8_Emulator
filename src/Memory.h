@@ -20,35 +20,40 @@
   * @brief Memory.c header : Define all functions, variables and defines for memory management.
   * @version 0.1
   * @date December 12, 2010
+  * @author Maxime Gaudin
   */
 
-///@brief Specifies the memory address where memory starts (0x0, what a surprise isn't it ??)
+#ifndef MEMORY_HEADER
+#define MEMORY_HEADER
+
+///@brief Specifies where memory starts (0x0, what a surprise isn't it ??).
 #define RESERVED_MEMORY_START 0x0
-/// @brief ...
+/// @brief Specifies where the memory stops.
 #define RESERVED_MEMORY_STOP 0x200
 
-/// @brief ...
+/// @brief Specifies the beginning of the data space.
 #define DATA_SPACE_START 0x200
-/// @brief ...
+/// @brief Specifies the end of the data space.
 #define DATA_SPACE_STOP 0xFFF
 
-/// @brief ...
+/// @brief Specifies the maximum number of registers..
 #define MAX_REGISTERS 0xF
 
 /* Shared memory ============================================ */
 /// @brief Address register
-static short I; 
+static unsigned short I; 
 
 /// @brief Delay register - Decremented every 17 ms (60Hz)
-static char delay;
+static unsigned char delay;
 
 /// @brief Sound register - Decremented every 17 ms (60Hz)
-static char sound;
+static unsigned char sound;
 
 /// @brief General purpose registers
-static char* registers; 
+static unsigned char* registers; 
 
-static char* memory;
+/// @brief Array representing the RAM.
+static unsigned char* memory;
 /* ========================================================== */
 
 /**
@@ -72,3 +77,5 @@ int write(unsigned short addr, char* const data, unsigned int len);
   * @param [out] buffer : Pointer to the data buffer
   */
 int read(short addr, unsigned short len, char* const buffer);
+
+#endif // MEMORY_HEADER
