@@ -30,6 +30,9 @@
 /// @brief ...
 #define DATA_SPACE_STOP 0xFFF
 
+/// @brief ...
+#define MAX_REGISTERS 0xF
+
 /* Shared memory ============================================ */
 /// @brief Address register
 static short I; 
@@ -41,9 +44,9 @@ static char delay;
 static char sound;
 
 /// @brief General purpose registers
-static char registers[0xF]; 
+static char* registers; 
 
-static char memory[DATA_SPACE_STOP];
+static char* memory;
 /* ========================================================== */
 
 /**
