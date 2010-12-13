@@ -1,4 +1,5 @@
 #include "Logs.h"
+#include "Memory.h"
 
 int main() {
 	setupLogs(DEFAULT_DEBUG_LEVEL, DEFAULT_OUTPUT_FILENAME);
@@ -9,6 +10,10 @@ int main() {
 	addEntry(DISASSEMBLING, "Je suis une instruction !");
 
 	closeLogs();
+
+	setupMemory();
+
+	cleanupMemory();
 
 	return 0;
 }

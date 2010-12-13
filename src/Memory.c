@@ -21,6 +21,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+/// @brief Array representing the RAM.
+static unsigned char* memory;
+
 int setupMemory() {
 	memory = (unsigned char*)calloc(DATA_SPACE_STOP, sizeof(unsigned char));	
 	if(memory == NULL) return 1;

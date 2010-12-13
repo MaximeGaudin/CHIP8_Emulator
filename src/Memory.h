@@ -40,9 +40,6 @@
 /// @brief Specifies the maximum number of registers..
 #define MAX_REGISTERS 0xF
 
-/// @brief Array representing the RAM.
-static unsigned char* memory;
-
 /**
  * @brief Initialize memory to 0
  * @return 0 if success, 1 otherwise.
@@ -71,5 +68,4 @@ int write(unsigned short addr, char* const data, unsigned int len);
  * @return 0 if success, 1 otherwise.
  */
 int read(short addr, unsigned short len, char* const buffer);
-
 #endif // MEMORY_HEADER
