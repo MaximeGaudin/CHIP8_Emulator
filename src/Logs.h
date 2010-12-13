@@ -15,6 +15,7 @@
  *
  *		Author : Maxime Gaudin
  */
+#include <stdio.h>
 
 enum DEBUG_LEVELS { ERROR = 0, WARNING = 1, DRAWING = 2, DISASSEMBLING = 3 };
 
@@ -37,22 +38,10 @@ static char* output_filename;
 static FILE* output_file;
 
 /**
-  * @brief Setup output log file and debug level to default values. Moreover, a file descriptor is created and initialized.
-  * @return 0 if success, 0 otherwise.
-  */
-int setupLogs();
-
-/**
-  * @brief Setup output log file and debug level to default values. Moreover, a file descriptor is created and initialized.
-  * @return 0 if success, 0 otherwise.
-  */
-int setupLogs(unsigned char debugLevel);
-
-/**
   * @brief Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is created and initialized.
   * @return 0 if success, 0 otherwise.
   */
-int setupLogs(unsigned char debugLevel, char* outputFilename);
+int setupLogs(unsigned char debugLevel, char* const outputFilename);
 
 /**
   * @brief Close output log file descriptor and flush file buffer.
@@ -63,4 +52,4 @@ int closeLogs();
 /**
   * @brief Add new entry in output log file if [level] is below or equal to debug level.
   */
-void addEntry(DEBUG_LEVELS level, const char* const message);
+void addEntry(unsigned char level, const char* const message);

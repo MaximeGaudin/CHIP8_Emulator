@@ -16,25 +16,27 @@
  *		Author : Maxime Gaudin
  */
 
-#include "Logs.h"
+/**
+ * @file CPU.h
+ * @brief
+ * @version 0.1
+ * @date December 12, 2010
+ * @author Maxime Gaudin
+ */
 
-int setupLogs(unsigned char debugLevel , char* const outputFilename ) {
-	output_filename	= outputFilename;
-	debug_level = debugLevel;
+#ifndef CPU_HEADER 
+#define CPU_HEADER 
 
-	output_file = fopen(output_filename, "a+");
-	if(output_file == NULL) return 1;
+/// @brief Address register
+static unsigned short I; 
 
-	log_initialized = 1;
-	return 0;
-}
+/// @brief Delay register - Decremented every 17 ms (60Hz)
+static unsigned char delay;
 
-int closeLogs() {
-	return (fclose(output_file) == EOF) ? 1 : 0;
-}
+/// @brief Sound register - Decremented every 17 ms (60Hz)
+static unsigned char sound;
 
-void addEntry(unsigned char level, const char* const message) {
-	if(level <= debug_level) {
-		fprintf(output_file, "[DEBUG] %s\n", message);
-	}
-}
+/// @brief General purpose registers
+static unsigned char* registers; 
+
+#endif // CPU_HEADER

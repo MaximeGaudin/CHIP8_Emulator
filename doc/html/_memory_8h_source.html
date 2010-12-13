@@ -78,25 +78,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00039"></a>00039 <span class="preprocessor"></span>
 <a name="l00041"></a><a class="code" href="_memory_8h.html#ae8ad666e8479723bd5e0fc1000b77b5b">00041</a> <span class="preprocessor">#define MAX_REGISTERS 0xF</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
-<a name="l00043"></a>00043 <span class="comment">/* Shared memory ============================================ */</span>
-<a name="l00045"></a>00045 <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> I; 
-<a name="l00046"></a>00046 
-<a name="l00048"></a>00048 <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> delay;
-<a name="l00049"></a>00049 
-<a name="l00051"></a>00051 <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> sound;
-<a name="l00052"></a>00052 
-<a name="l00054"></a>00054 <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* registers; 
-<a name="l00055"></a>00055 
-<a name="l00057"></a>00057 <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* memory;
-<a name="l00058"></a>00058 <span class="comment">/* ========================================================== */</span>
-<a name="l00059"></a>00059 
-<a name="l00064"></a>00064 <span class="keywordtype">int</span> <a class="code" href="_memory_8c.html#a6d6c1629ffc4341b0027e9aafe68d3db" title="Initialize memory to 0.">setupMemory</a>();
+<a name="l00044"></a>00044 <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* memory;
+<a name="l00045"></a>00045 
+<a name="l00050"></a>00050 <span class="keywordtype">int</span> <a class="code" href="_memory_8c.html#a6d6c1629ffc4341b0027e9aafe68d3db" title="Initialize memory to 0.">setupMemory</a>();
+<a name="l00051"></a>00051 
+<a name="l00055"></a>00055 <span class="keywordtype">void</span> <a class="code" href="_memory_8c.html#a22f843cd0d6e85d9afbfbf855e2affdf" title="Cleanup all memory.">cleanupMemory</a>();
+<a name="l00056"></a>00056 
+<a name="l00064"></a>00064 <span class="keywordtype">int</span> <a class="code" href="_memory_8c.html#a2ca62c1f40a13fbfa46dc6c06ac13ccd" title="write [len] bytes from [data] into memory at adress [addr]">write</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> addr, <span class="keywordtype">char</span>* <span class="keyword">const</span> data, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> len);
 <a name="l00065"></a>00065 
-<a name="l00073"></a>00073 <span class="keywordtype">int</span> <a class="code" href="_memory_8c.html#a2ca62c1f40a13fbfa46dc6c06ac13ccd" title="write [len] bytes from [data] into memory at adress [addr]">write</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> addr, <span class="keywordtype">char</span>* <span class="keyword">const</span> data, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> len);
+<a name="l00073"></a>00073 <span class="keywordtype">int</span> <a class="code" href="_memory_8c.html#af753d66931772f77fe5839a65bbea8e1" title="Read [len] bytes of data from address [addr] to buffer.">read</a>(<span class="keywordtype">short</span> addr, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> len, <span class="keywordtype">char</span>* <span class="keyword">const</span> buffer);
 <a name="l00074"></a>00074 
-<a name="l00082"></a>00082 <span class="keywordtype">int</span> <a class="code" href="_memory_8c.html#af753d66931772f77fe5839a65bbea8e1" title="Read [len] bytes of data from address [addr] to buffer.">read</a>(<span class="keywordtype">short</span> addr, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> len, <span class="keywordtype">char</span>* <span class="keyword">const</span> buffer);
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="preprocessor">#endif // MEMORY_HEADER</span>
+<a name="l00075"></a>00075 <span class="preprocessor">#endif // MEMORY_HEADER</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -113,7 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 12 2010 21:33:10 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 13 2010 20:09:30 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>
