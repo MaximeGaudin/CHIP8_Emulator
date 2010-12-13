@@ -51,21 +51,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00002"></a>00002 <span class="preprocessor">#include &quot;<a class="code" href="_memory_8h.html">Memory.h</a>&quot;</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a><a class="code" href="_c8_e_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">00004</a> <span class="keywordtype">int</span> <a class="code" href="_c8_e_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {
-<a name="l00005"></a>00005         <a class="code" href="_logs_8c.html#aef2cdd5b24a2e6dc9637fd7c5c205f4a" title="Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is ...">setupLogs</a>(<a class="code" href="_logs_8h.html#a18da678808a23365d00c58cdae11e29e" title="Specifies teh default debug level : Warning.">DEFAULT_DEBUG_LEVEL</a>, <a class="code" href="_logs_8h.html#a42afc88602c0461cee5e431d7fa6120c" title="Specifies the default output filename, i.e. the file where log will be written.">DEFAULT_OUTPUT_FILENAME</a>);
-<a name="l00006"></a>00006         
-<a name="l00007"></a>00007         <a class="code" href="_logs_8c.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915" title="Add new entry in output log file if [level] is below or equal to debug level.">addEntry</a>(<a class="code" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0a2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Je suis une erreur !&quot;</span>);
-<a name="l00008"></a>00008         <a class="code" href="_logs_8c.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915" title="Add new entry in output log file if [level] is below or equal to debug level.">addEntry</a>(<a class="code" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0a984de77c680eaff141ec910e25568a81">WARNING</a>, <span class="stringliteral">&quot;Je suis un warning !&quot;</span>);
-<a name="l00009"></a>00009         <a class="code" href="_logs_8c.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915" title="Add new entry in output log file if [level] is below or equal to debug level.">addEntry</a>(<a class="code" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0a958d99ff23a05900a8e5cf1a56055098">DRAWING</a>, <span class="stringliteral">&quot;Je suis un dessin !&quot;</span>);
-<a name="l00010"></a>00010         <a class="code" href="_logs_8c.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915" title="Add new entry in output log file if [level] is below or equal to debug level.">addEntry</a>(<a class="code" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0a9b769e69df83ef2a1cd09b0b3ab379b5">DISASSEMBLING</a>, <span class="stringliteral">&quot;Je suis une instruction !&quot;</span>);
-<a name="l00011"></a>00011 
-<a name="l00012"></a>00012         <a class="code" href="_logs_8c.html#a8fad8103564f0c127725d2bd134381d8" title="Close output log file descriptor and flush file buffer.">closeLogs</a>();
-<a name="l00013"></a>00013 
-<a name="l00014"></a>00014         <a class="code" href="_memory_8c.html#a6d6c1629ffc4341b0027e9aafe68d3db" title="Initialize memory to 0.">setupMemory</a>();
-<a name="l00015"></a>00015 
-<a name="l00016"></a>00016         <a class="code" href="_memory_8c.html#a22f843cd0d6e85d9afbfbf855e2affdf" title="Cleanup all memory.">cleanupMemory</a>();
-<a name="l00017"></a>00017 
-<a name="l00018"></a>00018         <span class="keywordflow">return</span> 0;
-<a name="l00019"></a>00019 }
+<a name="l00005"></a>00005         <a class="code" href="_logs_8c.html#ad89cafdb14cc423604c1c964b3962685" title="Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is ...">setupLogs</a>(1, <a class="code" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0acca8e26d968aedd3f08f936a78e17948">LOW_LEVEL_OPERATION</a>, <a class="code" href="_logs_8h.html#a42afc88602c0461cee5e431d7fa6120c" title="Specifies the default output filename, i.e. the file where log will be written.">DEFAULT_OUTPUT_FILENAME</a>);
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007         <a class="code" href="_memory_8c.html#a6d6c1629ffc4341b0027e9aafe68d3db" title="Initialize memory to 0.">setupMemory</a>();
+<a name="l00008"></a>00008         <a class="code" href="_memory_8c.html#a22f843cd0d6e85d9afbfbf855e2affdf" title="Cleanup all memory.">cleanupMemory</a>();
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010         <a class="code" href="_logs_8c.html#a8fad8103564f0c127725d2bd134381d8" title="Close output log file descriptor and flush file buffer.">closeLogs</a>();
+<a name="l00011"></a>00011         <span class="keywordflow">return</span> 0;
+<a name="l00012"></a>00012 }
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -82,7 +75,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 13 2010 20:44:26 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 13 2010 21:30:22 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

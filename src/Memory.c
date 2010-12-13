@@ -17,6 +17,7 @@
  */
 
 #include "Memory.h"
+#include "Logs.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -25,20 +26,27 @@
 static unsigned char* memory;
 
 int setupMemory() {
+	addEntry(LOW_LEVEL_OPERATION, "Memory initialization ...");	
+	
 	memory = (unsigned char*)calloc(DATA_SPACE_STOP, sizeof(unsigned char));	
 	if(memory == NULL) return 1;
 
+	addEntry(LOW_LEVEL_OPERATION, "Memory initialization : OK.");	
 	return 0;
 }
 
 
 void cleanupMemory() {
+	addEntry(LOW_LEVEL_OPERATION, "Memory deallocation.");	
 	free(memory);
 }
 
 int write(unsigned short addr, char* const data, unsigned int len) {
+	addEntry(LOW_LEVEL_OPERATION, "Write attempt...");	
+	
 	if(addr + len < DATA_SPACE_STOP) {
 		memcpy(memory + addr, data, len);
+		addEntry(LOW_LEVEL_OPERATION, "Data written into memory.");	
 		return 0;
 	}
 
@@ -46,8 +54,11 @@ int write(unsigned short addr, char* const data, unsigned int len) {
 }
 
 int read(short addr, unsigned short len, char* const buffer) {
+	addEntry(LOW_LEVEL_OPERATION, "Read attempt...");	
+	
 	if(addr + len < DATA_SPACE_STOP) {
 		memcpy(buffer, memory + addr, len);
+		addEntry(LOW_LEVEL_OPERATION, "Data read from memory.");	
 		return 0;
 	}
 

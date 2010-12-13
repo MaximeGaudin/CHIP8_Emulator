@@ -21,6 +21,9 @@
 /// @brief Indicate whether or not log system is initialized.
 static int log_initialized = 0;
 
+/// @brief Indicate whether or not log are redirected into stdout
+static int redirected = 0;
+
 /// @brief Variable containing the current debug_level.
 static unsigned char debug_level;
 
@@ -30,12 +33,15 @@ static char* output_filename;
 /// @brief Variable containing the current output file descriptor.
 static FILE* output_file;
 
-int setupLogs(unsigned char debugLevel , char* const outputFilename ) {
+int setupLogs(int redirect, unsigned char debugLevel , char* const outputFilename ) {
+	redirected = redirect;
 	output_filename	= outputFilename;
 	debug_level = debugLevel;
 
 	output_file = fopen(output_filename, "a+");
 	if(output_file == NULL) return 1;
+
+	fprintf(output_file, "**** OUTPUT LOG :\n");
 
 	log_initialized = 1;
 	return 0;
@@ -43,13 +49,26 @@ int setupLogs(unsigned char debugLevel , char* const outputFilename ) {
 
 int closeLogs() {
 	log_initialized = 0;
+	fprintf(output_file, "\n");
 	return (fclose(output_file) == EOF) ? 1 : 0;
 }
 
 void addEntry(unsigned char level, const char* const message) {
 	if(log_initialized) {
 		if(level <= debug_level) {
-			fprintf(output_file, "[DEBUG] %s\n", message);
+			char* levelBuffer; 
+			switch(level) {
+				case(ERROR): levelBuffer = "ERROR"; break;		
+				case(WARNING): levelBuffer = "WARNING"; break;		
+				case(DRAWING): levelBuffer = "DRAWING"; break;		
+				case(DISASSEMBLY): levelBuffer = "DISASSEMBLY"; break;		
+				case(LOW_LEVEL_OPERATION): levelBuffer = "LOW_LEVEL_OPERATION"; break;		
+
+				default: levelBuffer = "DEBUG";
+			}
+
+			fprintf(output_file, "[%s] %s\n", levelBuffer, message);
+			if(redirected) printf("[%s] %s\n", levelBuffer, message);
 		}
 	}
 }

@@ -17,7 +17,7 @@
  */
 #include <stdio.h>
 
-enum DEBUG_LEVELS { ERROR = 0, WARNING = 1, DRAWING = 2, DISASSEMBLING = 3 };
+enum DEBUG_LEVELS { ERROR = 0, WARNING = 1, DRAWING = 2, DISASSEMBLY = 3, LOW_LEVEL_OPERATION = 4 };
 
 /// @brief Specifies teh default debug level : Warning
 #define DEFAULT_DEBUG_LEVEL 1
@@ -27,9 +27,10 @@ enum DEBUG_LEVELS { ERROR = 0, WARNING = 1, DRAWING = 2, DISASSEMBLING = 3 };
 
 /**
   * @brief Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is created and initialized.
+  * if [redirect], log are also written in stdou.
   * @return 0 if success, 0 otherwise.
   */
-int setupLogs(unsigned char debugLevel, char* const outputFilename);
+int setupLogs(int redirect, unsigned char debugLevel, char* const outputFilename);
 
 /**
   * @brief Close output log file descriptor and flush file buffer.
