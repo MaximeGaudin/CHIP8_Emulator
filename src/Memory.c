@@ -22,17 +22,16 @@
 #include <string.h>
 
 int setupMemory() {
-	I = delay = sound = 0;
-	
-	registers = (unsigned char*)calloc(MAX_REGISTERS, sizeof(unsigned char));	
-	if(registers == NULL) return 1;
-
 	memory = (unsigned char*)calloc(DATA_SPACE_STOP, sizeof(unsigned char));	
 	if(memory == NULL) return 1;
 
 	return 0;
 }
 
+
+void cleanupMemory() {
+	free(memory);
+}
 
 int write(unsigned short addr, char* const data, unsigned int len) {
 	if(addr + len < DATA_SPACE_STOP) {
