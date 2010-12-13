@@ -16,40 +16,27 @@
  *		Author : Maxime Gaudin
  */
 
-#include "Memory.h"
+/**
+ * @file CPU.h
+ * @brief
+ * @version 0.1
+ * @date December 12, 2010
+ * @author Maxime Gaudin
+ */
 
-#include <stdlib.h>
-#include <string.h>
+#ifndef CPU_HEADER 
+#define CPU_HEADER 
 
-/// @brief Array representing the RAM.
-static unsigned char* memory;
+/// @brief Address register
+static unsigned short I; 
 
-int setupMemory() {
-	memory = (unsigned char*)calloc(DATA_SPACE_STOP, sizeof(unsigned char));	
-	if(memory == NULL) return 1;
+/// @brief Delay register - Decremented every 17 ms (60Hz)
+static unsigned char delay;
 
-	return 0;
-}
+/// @brief Sound register - Decremented every 17 ms (60Hz)
+static unsigned char sound;
 
+/// @brief General purpose registers
+static unsigned char* registers; 
 
-void cleanupMemory() {
-	free(memory);
-}
-
-int write(unsigned short addr, char* const data, unsigned int len) {
-	if(addr + len < DATA_SPACE_STOP) {
-		memcpy(memory + addr, data, len);
-		return 0;
-	}
-
-	return 1;
-}
-
-int read(short addr, unsigned short len, char* const buffer) {
-	if(addr + len < DATA_SPACE_STOP) {
-		memcpy(buffer, memory + addr, len);
-		return 0;
-	}
-
-	return 1;
-}
+#endif // CPU_HEADER

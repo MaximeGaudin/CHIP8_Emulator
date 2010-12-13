@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>C8E: src/Logs.h File Reference</title>
+<title>C8E: src/Logs.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -45,104 +45,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#define-members">Defines</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<h1>src/Logs.h File Reference</h1>  </div>
+<h1>src/Logs.c File Reference</h1>  </div>
 </div>
 <div class="contents">
-<code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="_logs_8h_source.html">Logs.h</a>&quot;</code><br/>
 
-<p><a href="_logs_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="_logs_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="define-members"></a>
-Defines</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8h.html#a18da678808a23365d00c58cdae11e29e">DEFAULT_DEBUG_LEVEL</a>&#160;&#160;&#160;1</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies teh default debug level : Warning.  <a href="#a18da678808a23365d00c58cdae11e29e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8h.html#a42afc88602c0461cee5e431d7fa6120c">DEFAULT_OUTPUT_FILENAME</a>&#160;&#160;&#160;&quot;DEBUG_LOGS&quot;</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies the default output filename, i.e. the file where log will be written.  <a href="#a42afc88602c0461cee5e431d7fa6120c"></a><br/></td></tr>
-<tr><td colspan="2"><h2><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0">DEBUG_LEVELS</a> { <a class="el" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0a2fd6f336d08340583bd620a7f5694c90">ERROR</a> =  0, 
-<a class="el" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0a984de77c680eaff141ec910e25568a81">WARNING</a> =  1, 
-<a class="el" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0a958d99ff23a05900a8e5cf1a56055098">DRAWING</a> =  2, 
-<a class="el" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0a9b769e69df83ef2a1cd09b0b3ab379b5">DISASSEMBLING</a> =  3
- }</td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8h.html#aef2cdd5b24a2e6dc9637fd7c5c205f4a">setupLogs</a> (unsigned char debugLevel, char *const outputFilename)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8c.html#aef2cdd5b24a2e6dc9637fd7c5c205f4a">setupLogs</a> (unsigned char debugLevel, char *const outputFilename)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is created and initialized.  <a href="#aef2cdd5b24a2e6dc9637fd7c5c205f4a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8h.html#a8fad8103564f0c127725d2bd134381d8">closeLogs</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8c.html#a8fad8103564f0c127725d2bd134381d8">closeLogs</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Close output log file descriptor and flush file buffer.  <a href="#a8fad8103564f0c127725d2bd134381d8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8h.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915">addEntry</a> (unsigned char level, const char *const message)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8c.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915">addEntry</a> (unsigned char level, const char *const message)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Add new entry in output log file if [level] is below or equal to debug level.  <a href="#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915"></a><br/></td></tr>
 </table>
-<hr/><h2>Define Documentation</h2>
-<a class="anchor" id="a18da678808a23365d00c58cdae11e29e"></a><!-- doxytag: member="Logs.h::DEFAULT_DEBUG_LEVEL" ref="a18da678808a23365d00c58cdae11e29e" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DEFAULT_DEBUG_LEVEL&#160;&#160;&#160;1</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Specifies teh default debug level : Warning. </p>
-
-<p>Definition at line <a class="el" href="_logs_8h_source.html#l00023">23</a> of file <a class="el" href="_logs_8h_source.html">Logs.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a42afc88602c0461cee5e431d7fa6120c"></a><!-- doxytag: member="Logs.h::DEFAULT_OUTPUT_FILENAME" ref="a42afc88602c0461cee5e431d7fa6120c" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DEFAULT_OUTPUT_FILENAME&#160;&#160;&#160;&quot;DEBUG_LOGS&quot;</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Specifies the default output filename, i.e. the file where log will be written. </p>
-
-<p>Definition at line <a class="el" href="_logs_8h_source.html#l00026">26</a> of file <a class="el" href="_logs_8h_source.html">Logs.h</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Enumeration Type Documentation</h2>
-<a class="anchor" id="a3434065dff12c09d99af118a688ca0d0"></a><!-- doxytag: member="Logs.h::DEBUG_LEVELS" ref="a3434065dff12c09d99af118a688ca0d0" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0">DEBUG_LEVELS</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="a3434065dff12c09d99af118a688ca0d0a2fd6f336d08340583bd620a7f5694c90"></a><!-- doxytag: member="ERROR" ref="a3434065dff12c09d99af118a688ca0d0a2fd6f336d08340583bd620a7f5694c90" args="" -->ERROR</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a3434065dff12c09d99af118a688ca0d0a984de77c680eaff141ec910e25568a81"></a><!-- doxytag: member="WARNING" ref="a3434065dff12c09d99af118a688ca0d0a984de77c680eaff141ec910e25568a81" args="" -->WARNING</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a3434065dff12c09d99af118a688ca0d0a958d99ff23a05900a8e5cf1a56055098"></a><!-- doxytag: member="DRAWING" ref="a3434065dff12c09d99af118a688ca0d0a958d99ff23a05900a8e5cf1a56055098" args="" -->DRAWING</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a3434065dff12c09d99af118a688ca0d0a9b769e69df83ef2a1cd09b0b3ab379b5"></a><!-- doxytag: member="DISASSEMBLING" ref="a3434065dff12c09d99af118a688ca0d0a9b769e69df83ef2a1cd09b0b3ab379b5" args="" -->DISASSEMBLING</em>&nbsp;</td><td>
-</td></tr>
-</table>
-</dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_logs_8h_source.html#l00020">20</a> of file <a class="el" href="_logs_8h_source.html">Logs.h</a>.</p>
-
-</div>
-</div>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a1f83fa6e9ae57a1ee6ef7b1c7a8bd915"></a><!-- doxytag: member="Logs.h::addEntry" ref="a1f83fa6e9ae57a1ee6ef7b1c7a8bd915" args="(unsigned char level, const char *const message)" -->
+<a class="anchor" id="a1f83fa6e9ae57a1ee6ef7b1c7a8bd915"></a><!-- doxytag: member="Logs.c::addEntry" ref="a1f83fa6e9ae57a1ee6ef7b1c7a8bd915" args="(unsigned char level, const char *const message)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -173,7 +95,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8fad8103564f0c127725d2bd134381d8"></a><!-- doxytag: member="Logs.h::closeLogs" ref="a8fad8103564f0c127725d2bd134381d8" args="()" -->
+<a class="anchor" id="a8fad8103564f0c127725d2bd134381d8"></a><!-- doxytag: member="Logs.c::closeLogs" ref="a8fad8103564f0c127725d2bd134381d8" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -194,7 +116,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aef2cdd5b24a2e6dc9637fd7c5c205f4a"></a><!-- doxytag: member="Logs.h::setupLogs" ref="aef2cdd5b24a2e6dc9637fd7c5c205f4a" args="(unsigned char debugLevel, char *const outputFilename)" -->
+<a class="anchor" id="aef2cdd5b24a2e6dc9637fd7c5c205f4a"></a><!-- doxytag: member="Logs.c::setupLogs" ref="aef2cdd5b24a2e6dc9637fd7c5c205f4a" args="(unsigned char debugLevel, char *const outputFilename)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">

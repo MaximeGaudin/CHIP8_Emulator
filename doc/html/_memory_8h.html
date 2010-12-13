@@ -70,6 +70,8 @@ Defines</h2></td></tr>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#a6d6c1629ffc4341b0027e9aafe68d3db">setupMemory</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize memory to 0.  <a href="#a6d6c1629ffc4341b0027e9aafe68d3db"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#a22f843cd0d6e85d9afbfbf855e2affdf">cleanupMemory</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleanup all memory.  <a href="#a22f843cd0d6e85d9afbfbf855e2affdf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#a2ca62c1f40a13fbfa46dc6c06ac13ccd">write</a> (unsigned short addr, char *const data, unsigned int len)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">write [len] bytes from [data] into memory at adress [addr]  <a href="#a2ca62c1f40a13fbfa46dc6c06ac13ccd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#af753d66931772f77fe5839a65bbea8e1">read</a> (short addr, unsigned short len, char *const buffer)</td></tr>
@@ -162,6 +164,26 @@ Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a22f843cd0d6e85d9afbfbf855e2affdf"></a><!-- doxytag: member="Memory.h::cleanupMemory" ref="a22f843cd0d6e85d9afbfbf855e2affdf" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cleanupMemory </td>
+          <td>(</td>
+          <td class="paramname">&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Cleanup all memory. </p>
+
+<p>Definition at line <a class="el" href="_memory_8c_source.html#l00035">35</a> of file <a class="el" href="_memory_8c_source.html">Memory.c</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="af753d66931772f77fe5839a65bbea8e1"></a><!-- doxytag: member="Memory.h::read" ref="af753d66931772f77fe5839a65bbea8e1" args="(short addr, unsigned short len, char *const buffer)" -->
 <div class="memitem">
 <div class="memproto">
@@ -196,7 +218,7 @@ Functions</h2></td></tr>
 <p>Read [len] bytes of data from address [addr] to buffer. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address where rea </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address where read begins </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>Number of bytes read </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">buffer</td><td>Pointer to the data buffer </td></tr>
   </table>
@@ -204,7 +226,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>0 if success, 1 otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="_memory_8c_source.html#l00039">39</a> of file <a class="el" href="_memory_8c_source.html">Memory.c</a>.</p>
+<p>Definition at line <a class="el" href="_memory_8c_source.html#l00048">48</a> of file <a class="el" href="_memory_8c_source.html">Memory.c</a>.</p>
 
 </div>
 </div>
@@ -225,7 +247,7 @@ Functions</h2></td></tr>
 <p>Initialize memory to 0. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>0 if success, 1 otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="_memory_8c_source.html#l00019">19</a> of file <a class="el" href="_memory_8c_source.html">Memory.c</a>.</p>
+<p>Definition at line <a class="el" href="_memory_8c_source.html#l00027">27</a> of file <a class="el" href="_memory_8c_source.html">Memory.c</a>.</p>
 
 </div>
 </div>
@@ -271,7 +293,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>0 if success, 1 otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="_memory_8c_source.html#l00030">30</a> of file <a class="el" href="_memory_8c_source.html">Memory.c</a>.</p>
+<p>Definition at line <a class="el" href="_memory_8c_source.html#l00039">39</a> of file <a class="el" href="_memory_8c_source.html">Memory.c</a>.</p>
 
 </div>
 </div>
@@ -290,7 +312,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 12 2010 21:33:10 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 13 2010 20:44:26 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

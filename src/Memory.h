@@ -40,28 +40,16 @@
 /// @brief Specifies the maximum number of registers..
 #define MAX_REGISTERS 0xF
 
-/* Shared memory ============================================ */
-/// @brief Address register
-static unsigned short I; 
-
-/// @brief Delay register - Decremented every 17 ms (60Hz)
-static unsigned char delay;
-
-/// @brief Sound register - Decremented every 17 ms (60Hz)
-static unsigned char sound;
-
-/// @brief General purpose registers
-static unsigned char* registers; 
-
-/// @brief Array representing the RAM.
-static unsigned char* memory;
-/* ========================================================== */
-
 /**
  * @brief Initialize memory to 0
  * @return 0 if success, 1 otherwise.
  */
 int setupMemory();
+
+/**
+ * @brief Cleanup all memory
+ */
+void cleanupMemory();
 
 /**
  * @brief write [len] bytes from [data] into memory at adress [addr]
@@ -74,11 +62,10 @@ int write(unsigned short addr, char* const data, unsigned int len);
 
 /**
  * @brief Read [len] bytes of data from address [addr] to buffer
- * @param [in] addr Address where rea
+ * @param [in] addr Address where read begins
  * @param [in] len Number of bytes read
  * @param [out] buffer Pointer to the data buffer
  * @return 0 if success, 1 otherwise.
  */
 int read(short addr, unsigned short len, char* const buffer);
-
 #endif // MEMORY_HEADER
