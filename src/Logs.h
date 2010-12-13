@@ -19,23 +19,11 @@
 
 enum DEBUG_LEVELS { ERROR = 0, WARNING = 1, DRAWING = 2, DISASSEMBLING = 3 };
 
-/// @brief Indicate whether or not log system is initialized.
-static int log_initialized = 0;
-
 /// @brief Specifies teh default debug level : Warning
 #define DEFAULT_DEBUG_LEVEL 1
 
-/// @brief Variable containing the current debug_level.
-static unsigned char debug_level;
-
 /// @brief Specifies the default output filename, i.e. the file where log will be written.
 #define DEFAULT_OUTPUT_FILENAME "DEBUG_LOGS"
-
-/// @brief Variable containing the current output filename.
-static char* output_filename;
-
-/// @brief Variable containing the current output file descriptor.
-static FILE* output_file;
 
 /**
   * @brief Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is created and initialized.

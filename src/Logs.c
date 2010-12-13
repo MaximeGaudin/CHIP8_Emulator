@@ -18,6 +18,18 @@
 
 #include "Logs.h"
 
+/// @brief Indicate whether or not log system is initialized.
+static int log_initialized = 0;
+
+/// @brief Variable containing the current debug_level.
+static unsigned char debug_level;
+
+/// @brief Variable containing the current output filename.
+static char* output_filename;
+
+/// @brief Variable containing the current output file descriptor.
+static FILE* output_file;
+
 int setupLogs(unsigned char debugLevel , char* const outputFilename ) {
 	output_filename	= outputFilename;
 	debug_level = debugLevel;
@@ -30,11 +42,14 @@ int setupLogs(unsigned char debugLevel , char* const outputFilename ) {
 }
 
 int closeLogs() {
+	log_initialized = 0;
 	return (fclose(output_file) == EOF) ? 1 : 0;
 }
 
 void addEntry(unsigned char level, const char* const message) {
-	if(level <= debug_level) {
-		fprintf(output_file, "[DEBUG] %s\n", message);
+	if(log_initialized) {
+		if(level <= debug_level) {
+			fprintf(output_file, "[DEBUG] %s\n", message);
+		}
 	}
 }
