@@ -18,18 +18,49 @@
 
 enum DEBUG_LEVELS { ERROR = 0, WARNING = 1, DRAWING = 2, DISASSEMBLING = 3 };
 
+/// @brief Indicate whether or not log system is initialized.
 static int log_initialized = 0;
 
+/// @brief Specifies teh default debug level : Warning
 #define DEFAULT_DEBUG_LEVEL 1
+
+/// @brief Variable containing the current debug_level.
 static unsigned char debug_level;
 
-#define DEFAULT_OUTPUT_FILE "DEBUG_LOGS"
-static char* output_file;
+/// @brief Specifies the default output filename, i.e. the file where log will be written.
+#define DEFAULT_OUTPUT_FILENAME "DEBUG_LOGS"
 
-void setupLogs();
-void setupLogs(unsigned char debugLevel);
-void setupLogs(unsigned char debugLevel, char* outputFile);
+/// @brief Variable containing the current output filename.
+static char* output_filename;
 
-void closeLogs();
+/// @brief Variable containing the current output file descriptor.
+static FILE* output_file;
 
+/**
+  * @brief Setup output log file and debug level to default values. Moreover, a file descriptor is created and initialized.
+  * @return 0 if success, 0 otherwise.
+  */
+int setupLogs();
+
+/**
+  * @brief Setup output log file and debug level to default values. Moreover, a file descriptor is created and initialized.
+  * @return 0 if success, 0 otherwise.
+  */
+int setupLogs(unsigned char debugLevel);
+
+/**
+  * @brief Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is created and initialized.
+  * @return 0 if success, 0 otherwise.
+  */
+int setupLogs(unsigned char debugLevel, char* outputFilename);
+
+/**
+  * @brief Close output log file descriptor and flush file buffer.
+  * @return 0 if success, 0 otherwise.
+  */
+int closeLogs();
+
+/**
+  * @brief Add new entry in output log file if [level] is below or equal to debug level.
+  */
 void addEntry(DEBUG_LEVELS level, const char* const message);
