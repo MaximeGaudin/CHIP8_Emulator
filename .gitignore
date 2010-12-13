@@ -1,6 +1,2 @@
 bin/
 doc_tmp/
-
-CMakeCache.txt
-CMakeFile
-Makefile

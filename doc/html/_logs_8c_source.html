@@ -67,26 +67,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00018"></a>00018 
 <a name="l00019"></a>00019 <span class="preprocessor">#include &quot;<a class="code" href="_logs_8h.html">Logs.h</a>&quot;</span>
 <a name="l00020"></a>00020 
-<a name="l00021"></a><a class="code" href="_logs_8h.html#aef2cdd5b24a2e6dc9637fd7c5c205f4a">00021</a> <span class="keywordtype">int</span> <a class="code" href="_logs_8c.html#aef2cdd5b24a2e6dc9637fd7c5c205f4a" title="Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is ...">setupLogs</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> debugLevel , <span class="keywordtype">char</span>* <span class="keyword">const</span> outputFilename ) {
-<a name="l00022"></a>00022         output_filename = outputFilename;
-<a name="l00023"></a>00023         debug_level = debugLevel;
-<a name="l00024"></a>00024 
-<a name="l00025"></a>00025         output_file = fopen(output_filename, <span class="stringliteral">&quot;a+&quot;</span>);
-<a name="l00026"></a>00026         <span class="keywordflow">if</span>(output_file == NULL) <span class="keywordflow">return</span> 1;
-<a name="l00027"></a>00027 
-<a name="l00028"></a>00028         log_initialized = 1;
-<a name="l00029"></a>00029         <span class="keywordflow">return</span> 0;
-<a name="l00030"></a>00030 }
-<a name="l00031"></a>00031 
-<a name="l00032"></a><a class="code" href="_logs_8h.html#a8fad8103564f0c127725d2bd134381d8">00032</a> <span class="keywordtype">int</span> <a class="code" href="_logs_8c.html#a8fad8103564f0c127725d2bd134381d8" title="Close output log file descriptor and flush file buffer.">closeLogs</a>() {
-<a name="l00033"></a>00033         <span class="keywordflow">return</span> (fclose(output_file) == EOF) ? 1 : 0;
-<a name="l00034"></a>00034 }
-<a name="l00035"></a>00035 
-<a name="l00036"></a><a class="code" href="_logs_8h.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915">00036</a> <span class="keywordtype">void</span> <a class="code" href="_logs_8c.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915" title="Add new entry in output log file if [level] is below or equal to debug level.">addEntry</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> level, <span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> message) {
-<a name="l00037"></a>00037         <span class="keywordflow">if</span>(level &lt;= debug_level) {
-<a name="l00038"></a>00038                 fprintf(output_file, <span class="stringliteral">&quot;[DEBUG] %s\n&quot;</span>, message);
-<a name="l00039"></a>00039         }
-<a name="l00040"></a>00040 }
+<a name="l00022"></a>00022 <span class="keyword">static</span> <span class="keywordtype">int</span> log_initialized = 0;
+<a name="l00023"></a>00023 
+<a name="l00025"></a>00025 <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> debug_level;
+<a name="l00026"></a>00026 
+<a name="l00028"></a>00028 <span class="keyword">static</span> <span class="keywordtype">char</span>* output_filename;
+<a name="l00029"></a>00029 
+<a name="l00031"></a>00031 <span class="keyword">static</span> FILE* output_file;
+<a name="l00032"></a>00032 
+<a name="l00033"></a><a class="code" href="_logs_8h.html#aef2cdd5b24a2e6dc9637fd7c5c205f4a">00033</a> <span class="keywordtype">int</span> <a class="code" href="_logs_8c.html#aef2cdd5b24a2e6dc9637fd7c5c205f4a" title="Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is ...">setupLogs</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> debugLevel , <span class="keywordtype">char</span>* <span class="keyword">const</span> outputFilename ) {
+<a name="l00034"></a>00034         output_filename = outputFilename;
+<a name="l00035"></a>00035         debug_level = debugLevel;
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037         output_file = fopen(output_filename, <span class="stringliteral">&quot;a+&quot;</span>);
+<a name="l00038"></a>00038         <span class="keywordflow">if</span>(output_file == NULL) <span class="keywordflow">return</span> 1;
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040         log_initialized = 1;
+<a name="l00041"></a>00041         <span class="keywordflow">return</span> 0;
+<a name="l00042"></a>00042 }
+<a name="l00043"></a>00043 
+<a name="l00044"></a><a class="code" href="_logs_8h.html#a8fad8103564f0c127725d2bd134381d8">00044</a> <span class="keywordtype">int</span> <a class="code" href="_logs_8c.html#a8fad8103564f0c127725d2bd134381d8" title="Close output log file descriptor and flush file buffer.">closeLogs</a>() {
+<a name="l00045"></a>00045         log_initialized = 0;
+<a name="l00046"></a>00046         <span class="keywordflow">return</span> (fclose(output_file) == EOF) ? 1 : 0;
+<a name="l00047"></a>00047 }
+<a name="l00048"></a>00048 
+<a name="l00049"></a><a class="code" href="_logs_8h.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915">00049</a> <span class="keywordtype">void</span> <a class="code" href="_logs_8c.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915" title="Add new entry in output log file if [level] is below or equal to debug level.">addEntry</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> level, <span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> message) {
+<a name="l00050"></a>00050         <span class="keywordflow">if</span>(log_initialized) {
+<a name="l00051"></a>00051                 <span class="keywordflow">if</span>(level &lt;= debug_level) {
+<a name="l00052"></a>00052                         fprintf(output_file, <span class="stringliteral">&quot;[DEBUG] %s\n&quot;</span>, message);
+<a name="l00053"></a>00053                 }
+<a name="l00054"></a>00054         }
+<a name="l00055"></a>00055 }
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -103,7 +114,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 13 2010 20:09:30 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 13 2010 20:41:44 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

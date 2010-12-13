@@ -1,8 +1,0 @@
-#! /bin/sh
-echo "**** Build documentation ...\n"
-doxygen >> /dev/null && \
-cd doc_tmp/latex/ && make >> /dev/null && cd ../../ && cp doc_tmp/latex/refman.pdf doc/Documentation.pdf && \
-cp -R doc_tmp/html doc/
-echo "\n**** Documentation built."
-
-echo "\n**** Build process : finished."
