@@ -27,16 +27,10 @@
 #ifndef CPU_HEADER 
 #define CPU_HEADER 
 
-/// @brief Address register
-static unsigned short I; 
+/// @brief Define the maximum stack size, i.e. the maximum amount of subroutine calls.
+#define MAX_STACK_SIZE 0xF
 
-/// @brief Delay register - Decremented every 17 ms (60Hz)
-static unsigned char delay;
-
-/// @brief Sound register - Decremented every 17 ms (60Hz)
-static unsigned char sound;
-
-/// @brief General purpose registers
-static unsigned char* registers; 
+int setupCPU();
+void cleanupCPU();
 
 #endif // CPU_HEADER
