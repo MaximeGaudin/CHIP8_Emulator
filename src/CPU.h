@@ -31,6 +31,9 @@
 #define MAX_STACK_SIZE 0xF
 
 int setupCPU();
+
 void cleanupCPU();
+
+void tick();
 
 #endif // CPU_HEADER

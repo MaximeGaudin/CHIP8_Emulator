@@ -72,3 +72,183 @@ void cleanupCPU() {
 	free(registers);
 	free(stack);
 }
+
+/**
+  * @brief Clear screen, i.e. put every pixel to low state (black)
+  *
+  */
+inline static void opCLS() {
+
+}
+
+/**
+  * @brief Return from sub routine.
+  * Thus, the CPU set the pc to the address contained in stack[sp] and decrement sp by 1.
+  * Mnemonic = RET
+  * Opcode : 0x00EE
+  */
+inline static void opRET() {
+	addEntry(DISASSEMBLY, "RET");
+	pc = stack[sp--];
+}
+
+/**
+  * @brief Jump unconditionnaly to [addr], 
+  * i.e. set pc to addr - 2 (because it will be incremented before the next CPU cycle )
+  * Mnemonic = JP
+  * opCode : 0x1NNN
+  * param [in] addr Address of the nezt intruction to execute.
+  */
+inline static void opJP(unsigned short addr) {
+	pc = addr - 2;	
+}
+
+/**
+  * @brief Call the subroutine at [addr].
+  * i.e. pc is stored in the stack, set to [addr] - 2 and the stack pointer is incremented.
+  * Mnemonic = CALL
+  * opCode = 0x2NNN
+  * param [in] address Address of the subroutine to call.
+  */
+inline static void opCALL(unsigned short addr) {
+	
+}
+
+/**
+  * @brief Skip if equal : Skip next instruction if V[X] == kk
+  * Mnemonic = SE
+  * opCode = 0x3Xkk
+  * param [in] X Index of the register to compare
+  * param [in] kk Value to compare with
+*/
+inline static void opSE(unsigned char X, unsigned char kk) {
+	if(registers[X] == kk) pc += 2;
+}
+
+/**
+  * @brief Skip if equal : Skip next instruction if V[X] == V[Y]
+  * Mnemonic = SE
+  * opCode = 0x5XY0
+  * param [in] X Index of the first register to compare
+  * param [in] Y Index of the second register to compare
+  */
+inline static void opSE2(unsigned char X, unsigned char Y) {
+	if(registers[X] == registers[Y]) pc += 2;
+}
+
+/**
+  * @brief Skip if not equal : Skip next instruction if V[X] != kk
+  * Mnemonic = SNE
+  * opCode = 0x4Xkk
+  * param [in] X Index of the register to compare
+  * param [in] kk value Value to compare with
+*/
+inline static void opSNE(unsigned char X, unsigned char kk) {
+	if(registers[X] =! kk) pc += 2;
+}
+
+/**
+  * Move value : Put value kk into register X.
+  * Mnemonic = MOV
+  * opCode = 0x6Xkk
+  * param [in] X Index of the storage register
+  * param [in] kk Value to store
+  */
+inline static void opMOV(unsigned char X, unsigned char kk) {
+	registers[X] = kk;
+}
+
+/**
+  * Move value : Put value from register Y into register X.
+  * Mnemonic = MOV
+  * opCode = 0x8XY0
+  * param [in] X Index of the destination register
+  * param [in] Y Index of the source register
+  */
+inline static void opMOV2(unsigned char X, unsigned char Y) {
+	registers[X] = registers[Y];
+}
+
+/**
+  * Add value : Put value kk + V[X] into register X.
+  * Mnemonic = ADD
+  * opCode = 0x7Xkk
+  * param [in] X Index of the storage register
+  * param [in] kk Value to add
+  */
+inline static void opADD(unsigned char X, unsigned char kk) {
+	registers[X] += kk;
+}
+
+
+/**
+  * Add operator : Put value V[X] + V[Y] into register X.
+  * If an overflow happens, V[0xF] = 1, v[0xF] = 0 Otherwise. 
+  * Mnemonic = ADD
+  * opCode = 0x8XY4
+  * param [in] X Index of the destination register
+  * param [in] Y Index of the source register
+  */
+inline static void opADD2(unsigned char X, unsigned char Y) {
+	registers[X] += registers[Y];
+	registers[0xF] = ((int)registers[X] + (int)registers[Y] > 255) ? 1 : 0;
+}
+
+
+/**
+  * Or binary operator : Put value V[X] | V[Y] into register X.
+  * Mnemonic = OR
+  * opCode = 0x8XY1
+  * param [in] X Index of the destination register
+  * param [in] Y Index of the source register
+  */
+inline static void opOR(unsigned char X, unsigned char Y) {
+	registers[X] |= registers[Y];
+}
+
+
+/**
+  * And binary operator : Put value V[X] & V[Y] into register X.
+  * Mnemonic = AND
+  * opCode = 0x8XY2
+  * param [in] X Index of the destination register
+  * param [in] Y Index of the source register
+  */
+inline static void opAND(unsigned char X, unsigned char Y) {
+	registers[X] &= registers[Y];
+}
+
+/**
+  * Xor binary operator : Put value V[X] ^ V[Y] into register X.
+  * Mnemonic = XOR
+  * opCode = 0x8XY3
+  * param [in] X Index of the destination register
+  * param [in] Y Index of the source register
+  */
+inline static void opXOR(unsigned char X, unsigned char Y) {
+	registers[X] ^= registers[Y];
+}
+
+
+void tick() {
+	// WHILE SMTH
+	handleOpCode();
+}
+
+void handleOpCode() {
+	unsigned short opCode; read(pc, 2, (char*)(&opCode));
+	unsigned char byte1, byte2; 
+	byte1 = 0x01 & opCode; byte2 = 0x10 & opCode;
+
+	if(opCode == 0x00E0) { opCLS(); }
+	else if(opCode == 0x00EE) { opRET(); }
+
+	else if(opCode & 0x1000 == 0x1000) { opJP(opCode & 0x0111); }
+	else if(opCode & 0x1000 == 0x2000) { opCALL(opCode  & 0x0111); }
+	else if(opCode & 0x1000 == 0x3000) { opSE(opCode & 0x0100, opCode & 0x0011); }
+	else if(opCode & 0x1000 == 0x4000) { opSNE(opCode & 0x0100, opCode & 0x0011); }
+	else if(opCode & 0x1001 == 0x5000) { opSE2(opCode & 0x0100, opCode & 0x0010); }
+
+	
+}
+
