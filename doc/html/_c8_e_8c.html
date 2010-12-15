@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
+<a href="#define-members">Defines</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <h1>src/C8E.c File Reference</h1>  </div>
@@ -52,20 +53,124 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <code>#include &quot;<a class="el" href="_logs_8h_source.html">Logs.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_memory_8h_source.html">Memory.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_cartridge_reader_8h_source.html">CartridgeReader.h</a>&quot;</code><br/>
+<code>#include &lt;GLUT/glut.h&gt;</code><br/>
 
 <p><a href="_c8_e_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c8_e_8c.html#a280c85d6635d18ebcd908d2f96c34bca">IDLE_TIME</a>&#160;&#160;&#160;16</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c8_e_8c.html#a2cd109632a6dcccaa80b43561b1ab700">SCREEN_WIDTH</a>&#160;&#160;&#160;64</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c8_e_8c.html#a25f7ae536603397e929ff4941e253200">SCREEN_HEIGTH</a>&#160;&#160;&#160;32</td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c8_e_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c8_e_8c.html#a7d9edd8b0a8d0d2f737eb5ee0b0a5040">render</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c8_e_8c.html#a40b2e3e5b0ed108b41d366197ce32554">CPUTick</a> (int t)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c8_e_8c.html#a7d07e57011abaabd752436e4fe0e0a2f">setupGlut</a> (int argc, char **argv)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c8_e_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
 </table>
+<hr/><h2>Define Documentation</h2>
+<a class="anchor" id="a280c85d6635d18ebcd908d2f96c34bca"></a><!-- doxytag: member="C8E.c::IDLE_TIME" ref="a280c85d6635d18ebcd908d2f96c34bca" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define IDLE_TIME&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c8_e_8c_source.html#l00011">11</a> of file <a class="el" href="_c8_e_8c_source.html">C8E.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a25f7ae536603397e929ff4941e253200"></a><!-- doxytag: member="C8E.c::SCREEN_HEIGTH" ref="a25f7ae536603397e929ff4941e253200" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SCREEN_HEIGTH&#160;&#160;&#160;32</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c8_e_8c_source.html#l00014">14</a> of file <a class="el" href="_c8_e_8c_source.html">C8E.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2cd109632a6dcccaa80b43561b1ab700"></a><!-- doxytag: member="C8E.c::SCREEN_WIDTH" ref="a2cd109632a6dcccaa80b43561b1ab700" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SCREEN_WIDTH&#160;&#160;&#160;64</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c8_e_8c_source.html#l00013">13</a> of file <a class="el" href="_c8_e_8c_source.html">C8E.c</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ae66f6b31b5ad750f1fe042a706a4e3d4"></a><!-- doxytag: member="C8E.c::main" ref="ae66f6b31b5ad750f1fe042a706a4e3d4" args="()" -->
+<a class="anchor" id="a40b2e3e5b0ed108b41d366197ce32554"></a><!-- doxytag: member="C8E.c::CPUTick" ref="a40b2e3e5b0ed108b41d366197ce32554" args="(int t)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CPUTick </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"> <em>t</em>&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c8_e_8c_source.html#l00034">34</a> of file <a class="el" href="_c8_e_8c_source.html">C8E.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3c04138a5bfe5d72780bb7e82a18e627"></a><!-- doxytag: member="C8E.c::main" ref="a3c04138a5bfe5d72780bb7e82a18e627" args="(int argc, char **argv)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"> <em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"> <em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c8_e_8c_source.html#l00048">48</a> of file <a class="el" href="_c8_e_8c_source.html">C8E.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7d9edd8b0a8d0d2f737eb5ee0b0a5040"></a><!-- doxytag: member="C8E.c::render" ref="a7d9edd8b0a8d0d2f737eb5ee0b0a5040" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render </td>
           <td>(</td>
           <td class="paramname">&#160;)</td>
           <td></td>
@@ -74,7 +179,36 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_c8_e_8c_source.html#l00004">4</a> of file <a class="el" href="_c8_e_8c_source.html">C8E.c</a>.</p>
+<p>Definition at line <a class="el" href="_c8_e_8c_source.html#l00016">16</a> of file <a class="el" href="_c8_e_8c_source.html">C8E.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7d07e57011abaabd752436e4fe0e0a2f"></a><!-- doxytag: member="C8E.c::setupGlut" ref="a7d07e57011abaabd752436e4fe0e0a2f" args="(int argc, char **argv)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupGlut </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"> <em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"> <em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c8_e_8c_source.html#l00041">41</a> of file <a class="el" href="_c8_e_8c_source.html">C8E.c</a>.</p>
 
 </div>
 </div>
@@ -93,7 +227,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 13 2010 21:30:22 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Dec 15 2010 19:05:15 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

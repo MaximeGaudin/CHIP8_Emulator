@@ -1,6 +1,7 @@
 CC=g++
 CFLAGS=-W -Wall -Wextra -ansi -pedantic -Wno-write-strings
 LDFLAGS=
+APPLEFLAGS=-framework GLUT -framework OPENGL
 EXEC=C8E
 
 SRC_DIR=src/
@@ -13,8 +14,8 @@ doc: $(BIN_DIR)$(EXEC)
 	cd doc_tmp/latex/ && make >> /dev/null && cd ../../ && cp doc_tmp/latex/refman.pdf doc/Documentation.pdf && \
 	cp -R doc_tmp/html doc/
 
-$(BIN_DIR)$(EXEC): $(BIN_DIR)C8E.o $(BIN_DIR)Logs.o $(BIN_DIR)Memory.o
-	$(CC) -o $@  $^ $(CFLAGS)
+$(BIN_DIR)$(EXEC): $(BIN_DIR)C8E.o $(BIN_DIR)Logs.o $(BIN_DIR)Memory.o $(BIN_DIR)CartridgeReader.o
+	$(CC) -o $@ $(APPLEFLAGS) $^ $(CFLAGS)
 
 $(BIN_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) -o $@ -c $< $(CFLAGS)

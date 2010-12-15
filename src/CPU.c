@@ -190,10 +190,61 @@ inline static void opADD(unsigned char X, unsigned char kk) {
   * param [in] Y Index of the source register
   */
 inline static void opADD2(unsigned char X, unsigned char Y) {
-	registers[X] += registers[Y];
 	registers[0xF] = ((int)registers[X] + (int)registers[Y] > 255) ? 1 : 0;
+	registers[X] += registers[Y];
 }
 
+/**
+  * Sub operator : Put value V[X] - V[Y] into register X.
+  * If V[X] > V[Y], V[0xF] = 1, v[0xF] = 0 Otherwise. 
+  * Mnemonic = SUB
+  * opCode = 0x8XY5
+  * param [in] X Index of the destination register
+  * param [in] Y Index of the source register
+  */
+inline static void opSUB(unsigned char X, unsigned char Y) {
+	registers[0xF] = (registers[X] > registers[Y]) ? 1 : 0;
+	registers[X] -= registers[Y];
+}
+
+/**
+  * Opposite Sub operator : Put value V[Y] - V[X] into register X.
+  * If V[Y] > V[X], V[0xF] = 1, v[0xF] = 0 Otherwise. 
+  * Mnemonic = SUBN
+  * opCode = 0x8XY7
+  * param [in] X Index of the destination register
+  * param [in] Y Index of the source register
+  */
+inline static void opSUBN(unsigned char X, unsigned char Y) {
+	registers[0xF] = (registers[Y] > registers[X]) ? 1 : 0;
+	registers[X] = registers[Y] - registers[X];
+}
+
+/**
+  * SHR operator : Shift register X by 1 to the right.
+  * If the least significant bit of V[X] is 1, V[0xF] = 1. 0 otherwise.
+  * In other words, if V[X] is odd, V[0xF] = 1.
+  * Mnemonic = SHR
+  * opCode = 0x8XY6
+  * param [in] X Index of the destination register
+  */
+inline static void opSHR(unsigned char X) {
+	registers[0xF] = (registers[X] % 2);
+	registers[X] >> 1;
+}
+
+/**
+  * SHR operator : Shift register X by 1 to the left.
+  * If the most significant bit of V[X] is 1, V[0xF] = 1. 0 otherwise.
+  * In other words, if V[X] >= 128, V[0xF] = 1.
+  * Mnemonic = SHL
+  * opCode = 0x8XYE
+  * param [in] X Index of the destination register
+  */
+inline static void opSHL(unsigned char X) {
+	registers[0xF] = (registers[X] >= 128) ? 1 : 0;
+	registers[X] << 1;
+}
 
 /**
   * Or binary operator : Put value V[X] | V[Y] into register X.
