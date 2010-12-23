@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>C8E: src/Logs.c File Reference</title>
+<title>C8E: src/CPU.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -47,60 +47,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<h1>src/Logs.c File Reference</h1>  </div>
+<h1>src/CPU.c File Reference</h1>  </div>
 </div>
 <div class="contents">
+<code>#include &quot;<a class="el" href="_c_p_u_8h_source.html">CPU.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_logs_8h_source.html">Logs.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_display_8h_source.html">Display.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_memory_8h_source.html">Memory.h</a>&quot;</code><br/>
 
-<p><a href="_logs_8c_source.html">Go to the source code of this file.</a></p>
+<p><a href="_c_p_u_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8c.html#ad89cafdb14cc423604c1c964b3962685">setupLogs</a> (int redirect, unsigned char debugLevel, char *const outputFilename)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is created and initialized. if [redirect], log are also written in stdou.  <a href="#ad89cafdb14cc423604c1c964b3962685"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8c.html#a8fad8103564f0c127725d2bd134381d8">closeLogs</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Close output log file descriptor and flush file buffer.  <a href="#a8fad8103564f0c127725d2bd134381d8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_logs_8c.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915">addEntry</a> (unsigned char level, const char *const message)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Add new entry in output log file if [level] is below or equal to debug level.  <a href="#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8c.html#ab964a69bfa48d0b407b523af246d4e85">setupCPU</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8c.html#a98d3238611a756f7870731cd763dd5ca">cleanupCPU</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8c.html#a873dd91783f9efb4a590aded1f70d6b0">tick</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8c.html#a36ad4c89710572fc26b7d93fa08d89e6">handleOpCode</a> ()</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<dl class="version"><dt><b>Version:</b></dt><dd>0.1 </dd></dl>
+<dl class="date"><dt><b>Date:</b></dt><dd>December 13, 2010 </dd></dl>
+<dl class="author"><dt><b>Author:</b></dt><dd>Maxime Gaudin </dd></dl>
+
+<p>Definition in file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a1f83fa6e9ae57a1ee6ef7b1c7a8bd915"></a><!-- doxytag: member="Logs.c::addEntry" ref="a1f83fa6e9ae57a1ee6ef7b1c7a8bd915" args="(unsigned char level, const char *const message)" -->
+<a class="anchor" id="a98d3238611a756f7870731cd763dd5ca"></a><!-- doxytag: member="CPU.c::cleanupCPU" ref="a98d3238611a756f7870731cd763dd5ca" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void addEntry </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"> <em>level</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *const &#160;</td>
-          <td class="paramname"> <em>message</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Add new entry in output log file if [level] is below or equal to debug level. </p>
-
-<p>Definition at line <a class="el" href="_logs_8c_source.html#l00056">56</a> of file <a class="el" href="_logs_8c_source.html">Logs.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8fad8103564f0c127725d2bd134381d8"></a><!-- doxytag: member="Logs.c::closeLogs" ref="a8fad8103564f0c127725d2bd134381d8" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int closeLogs </td>
+          <td class="memname">void cleanupCPU </td>
           <td>(</td>
           <td class="paramname">&#160;)</td>
           <td></td>
@@ -109,48 +85,61 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Close output log file descriptor and flush file buffer. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>0 if success, 0 otherwise. </dd></dl>
-
-<p>Definition at line <a class="el" href="_logs_8c_source.html#l00050">50</a> of file <a class="el" href="_logs_8c_source.html">Logs.c</a>.</p>
+<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00071">71</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad89cafdb14cc423604c1c964b3962685"></a><!-- doxytag: member="Logs.c::setupLogs" ref="ad89cafdb14cc423604c1c964b3962685" args="(int redirect, unsigned char debugLevel, char *const outputFilename)" -->
+<a class="anchor" id="a36ad4c89710572fc26b7d93fa08d89e6"></a><!-- doxytag: member="CPU.c::handleOpCode" ref="a36ad4c89710572fc26b7d93fa08d89e6" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int setupLogs </td>
+          <td class="memname">void handleOpCode </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"> <em>redirect</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname">&#160;)</td>
           <td></td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"> <em>debugLevel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *const &#160;</td>
-          <td class="paramname"> <em>outputFilename</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is created and initialized. if [redirect], log are also written in stdou. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>0 if success, 0 otherwise. </dd></dl>
+<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00353">353</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
 
-<p>Definition at line <a class="el" href="_logs_8c_source.html#l00036">36</a> of file <a class="el" href="_logs_8c_source.html">Logs.c</a>.</p>
+</div>
+</div>
+<a class="anchor" id="ab964a69bfa48d0b407b523af246d4e85"></a><!-- doxytag: member="CPU.c::setupCPU" ref="ab964a69bfa48d0b407b523af246d4e85" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int setupCPU </td>
+          <td>(</td>
+          <td class="paramname">&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00054">54</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a873dd91783f9efb4a590aded1f70d6b0"></a><!-- doxytag: member="CPU.c::tick" ref="a873dd91783f9efb4a590aded1f70d6b0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tick </td>
+          <td>(</td>
+          <td class="paramname">&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00348">348</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
 
 </div>
 </div>

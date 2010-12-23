@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>C8E: Main Page</title>
+<title>C8E: src/CartridgeReader.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -16,8 +16,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="navigation" id="top">
   <div class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -36,13 +36,71 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+    </ul>
+  </div>
 </div>
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<h1>C8E Documentation</h1>  </div>
+<h1>src/CartridgeReader.c File Reference</h1>  </div>
 </div>
 <div class="contents">
-<h3 class="version">0.1 </h3></div>
+<code>#include &quot;<a class="el" href="_cartridge_reader_8h_source.html">CartridgeReader.h</a>&quot;</code><br/>
+<code>#include &lt;stdio.h&gt;</code><br/>
+
+<p><a href="_cartridge_reader_8c_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cartridge_reader_8c.html#a2dc8ad0cf7e92d3a92cdc6a7f4a29719">readCartridge</a> (const char *const filename, char *data)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide a pointer to the cardridge data.  <a href="#a2dc8ad0cf7e92d3a92cdc6a7f4a29719"></a><br/></td></tr>
+</table>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a2dc8ad0cf7e92d3a92cdc6a7f4a29719"></a><!-- doxytag: member="CartridgeReader.c::readCartridge" ref="a2dc8ad0cf7e92d3a92cdc6a7f4a29719" args="(const char *const filename, char *data)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int readCartridge </td>
+          <td>(</td>
+          <td class="paramtype">const char *const &#160;</td>
+          <td class="paramname"> <em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"> <em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Provide a pointer to the cardridge data. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>Point the file to load into memory </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>Buffer that eventually receive the cardridge data. It must be initialized and big enougth. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>0 if the file exists, 1 otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="_cartridge_reader_8c_source.html#l00031">31</a> of file <a class="el" href="_cartridge_reader_8c_source.html">CartridgeReader.c</a>.</p>
+
+</div>
+</div>
+</div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
