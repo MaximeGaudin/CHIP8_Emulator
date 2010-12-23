@@ -1,17 +1,17 @@
 /*	This file is part of C8E.
- *       
+ *
  *       C8E is free software: you can redistribute it and/or modify
  *       it under the terms of the GNU General Public License as published by
  *       the Free Software Foundation, either version 3 of the License, or
  *       (at your option) any later version.
- *       
+ *
  *       C8E is distributed in the hope that it will be useful,
  *              but WITHOUT ANY WARRANTY; without even the implied warranty of
  *              MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *              GNU General Public License for more details.
- *       
+ *
  *              You should have received a copy of the GNU General Public License
- *              along with C8E.  If not, see <http://www.gnu.org/licenses/>. 
+ *              along with C8E.  If not, see <http://www.gnu.org/licenses/>.
  *
  *		Author : Maxime Gaudin
  */
@@ -44,41 +44,40 @@
 static bool* bitmap;
 
 int setupDisplay(int argc, char** argv) {
-	bitmap = (bool*)calloc(SCREEN_WIDTH * SCREEN_HEIGTH, sizeof(bool));
-	if(bitmap == NULL) return 1;
+    bitmap = (bool*)calloc(SCREEN_WIDTH * SCREEN_HEIGTH, sizeof(bool));
+    if(bitmap == NULL) return 1;
 
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutCreateWindow("Chip8 emu");
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    glutCreateWindow("Chip8 emu");
 
-	return 0;
+    return 0;
 }
 
 int cleanupDisplay() {
-	free(bitmap);
+    free(bitmap);
 
-	return 0;
+    return 0;
 }
 
 void render(int) {
-	addEntry(LOW_LEVEL_OPERATION, "Dessin !");
-	
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    addEntry(LOW_LEVEL_OPERATION, "Dessin !");
 
-	for(int i=0; i<SCREEN_HEIGTH * SCREEN_WIDTH; ++i)
-			if(bitmap[i])
-			{   
-				glPushMatrix();
-				glTranslated(i % SCREEN_WIDTH,i / SCREEN_WIDTH, 0);
-				glutSolidCube(1);
-				glPopMatrix();
-			}
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glutSwapBuffers();
-	glutTimerFunc(DISPLAY_IDLE_TIME, render, 0);
+    for(int i=0; i<SCREEN_HEIGTH * SCREEN_WIDTH; ++i)
+        if(bitmap[i]) {
+            glPushMatrix();
+            glTranslated(i % SCREEN_WIDTH,i / SCREEN_WIDTH, 0);
+            glutSolidCube(1);
+            glPopMatrix();
+        }
+
+    glutSwapBuffers();
+    glutTimerFunc(DISPLAY_IDLE_TIME, render, 0);
 }
 
 int clearScreen() {
-	return (bitmap == memset(bitmap, false, SCREEN_WIDTH * SCREEN_HEIGTH)) ? 0 : 1;
+    return (bitmap == memset(bitmap, false, SCREEN_WIDTH * SCREEN_HEIGTH)) ? 0 : 1;
 }
