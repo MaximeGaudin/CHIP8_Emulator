@@ -30,14 +30,18 @@
 /**
   * @brief Setup all display related memory buffer and glut framework.
   */
-int setupDisplay();
+int setupDisplay(int argc, char** argv);
+
+int cleanupDisplay();
 
 /**
   * @brief Display a [len] byte sprite contained into [spriteData] at ([X], [Y]).
-  * DESCRIPTION TODO
+  * TECHNICAL DESCRIPTION TODO
   * @return 1 if any pixel has been erase, 0 Otherwise.
   */
 int drawSprite(unsigned char X, unsigned char Y,const char* const spriteData, unsigned char len);
+
+int render();
 
 /**
   * @brief Clear screen
