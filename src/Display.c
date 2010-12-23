@@ -41,7 +41,7 @@
 
 #define DISPLAY_IDLE_TIME 16
 
-static bool* bitmap;
+static unsigned char* bitmap;
 
 int setupDisplay(int argc, char** argv) {
     bitmap = (bool*)calloc(SCREEN_WIDTH * SCREEN_HEIGTH, sizeof(bool));

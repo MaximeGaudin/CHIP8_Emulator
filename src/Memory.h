@@ -27,17 +27,17 @@
 #ifndef MEMORY_HEADER
 #define MEMORY_HEADER
 
-/// @brief Specifies where memory starts (0x0, what a surprise isn't it ??).
+/** @brief Specifies where memory starts (0x0, what a surprise isn't it ??). **/
 #define RESERVED_MEMORY_START 0x0
-/// @brief Specifies where the memory stops.
+/** @brief Specifies where the memory stops. **/
 #define RESERVED_MEMORY_STOP 0x200
 
-/// @brief Specifies the beginning of the data space.
+/** @brief Specifies the beginning of the data space. **/
 #define DATA_SPACE_START 0x200
-/// @brief Specifies the end of the data space.
+/** @brief Specifies the end of the data space. **/
 #define DATA_SPACE_STOP 0xFFF
 
-/// @brief Specifies the maximum number of registers..
+/** @brief Specifies the maximum number of registers.. **/
 #define MAX_REGISTERS 0xF
 
 /**
@@ -68,4 +68,4 @@ int write(unsigned short addr, unsigned char* const data, unsigned int len);
  * @return 0 if success, 1 otherwise.
  */
 int read(short addr, unsigned short len, unsigned char* const buffer);
-#endif // MEMORY_HEADER
+#endif /* MEMORY_HEADER */

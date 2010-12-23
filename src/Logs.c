@@ -18,19 +18,19 @@
 
 #include "Logs.h"
 
-/// @brief Indicate whether or not log system is initialized.
+/** @brief Indicate whether or not log system is initialized. **/
 static int log_initialized = 0;
 
-/// @brief Indicate whether or not log are redirected into stdout
+/** @brief Indicate whether or not log are redirected into stdout  **/
 static int redirected = 0;
 
-/// @brief Variable containing the current debug_level.
+/** @brief Variable containing the current debug_level. **/
 static unsigned char debug_level;
 
-/// @brief Variable containing the current output filename.
+/** @brief Variable containing the current output filename. **/
 static char* output_filename;
 
-/// @brief Variable containing the current output file descriptor.
+/** @brief Variable containing the current output file descriptor. **/
 static FILE* output_file;
 
 int setupLogs(int redirect, unsigned char debugLevel , char* const outputFilename ) {

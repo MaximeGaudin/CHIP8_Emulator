@@ -49,4 +49,4 @@ void render(int);
   */
 int clearScreen();
 
-#endif // DISPLAY_HEADER
+#endif /** DISPLAY_HEADER **/

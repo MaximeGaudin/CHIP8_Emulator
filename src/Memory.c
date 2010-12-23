@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/// @brief Array representing the RAM.
+/** @brief Array representing the RAM. **/
 static unsigned char* memory;
 
 int setupMemory() {

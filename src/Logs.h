@@ -19,10 +19,10 @@
 
 enum DEBUG_LEVELS { ERROR = 0, WARNING = 1, DRAWING = 2, DISASSEMBLY = 3, LOW_LEVEL_OPERATION = 4 };
 
-/// @brief Specifies teh default debug level : Warning
+/** @brief Specifies teh default debug level : Warning **/
 #define DEFAULT_DEBUG_LEVEL 1
 
-/// @brief Specifies the default output filename, i.e. the file where log will be written.
+/** @brief Specifies the default output filename, i.e. the file where log will be written. **/
 #define DEFAULT_OUTPUT_FILENAME "DEBUG_LOGS"
 
 /**

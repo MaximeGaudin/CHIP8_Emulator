@@ -21,17 +21,18 @@ void printUsage() {
 }
 
 int main(int argc, char** argv) {
+    unsigned char programBuffer[512];
+    int len;
     if(argc != 2) printUsage();
 
     setupLogs(1, LOW_LEVEL_OPERATION, DEFAULT_OUTPUT_FILENAME);
     setupMemory();
     setupDisplay(argc, argv);
-
-    unsigned char programBuffer[512];
-    int len = readCartridge(argv[1], programBuffer);
+ 
+    len = readCartridge(argv[1], programBuffer);
     write(DATA_SPACE_START, programBuffer, len);
 
-    //CPUTick(0);
+    /* CPUTick(0); */
     render(0);
 
     glutMainLoop();

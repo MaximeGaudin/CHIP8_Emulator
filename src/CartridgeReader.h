@@ -35,4 +35,4 @@
   */
 int readCartridge(const char* const filename, unsigned char* data);
 
-#endif // CARTRIDGE_READER_HEADER
+#endif /** CARTRIDGE_READER_HEADER **/
