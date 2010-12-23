@@ -7,12 +7,7 @@ EXEC=C8E
 SRC_DIR=src/
 BIN_DIR=bin/
 
-all: doc
-
-doc: $(BIN_DIR)$(EXEC)
-	doxygen >> /dev/null && \
-	cd doc_tmp/latex/ && make >> /dev/null && cd ../../ && cp doc_tmp/latex/refman.pdf doc/Documentation.pdf && \
-	cp -R doc_tmp/html doc/
+all: $(BIN_DIR)$(EXEC)
 
 $(BIN_DIR)$(EXEC): $(BIN_DIR)C8E.o $(BIN_DIR)Logs.o $(BIN_DIR)Memory.o $(BIN_DIR)CartridgeReader.o $(BIN_DIR)Display.o
 	$(CC) -o $@ $(APPLEFLAGS) $^ $(CFLAGS)
