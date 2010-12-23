@@ -31,7 +31,7 @@
   * @brief Provide a pointer to the cardridge data
   * @param [in] filename Point the file to load into memory
   * @param [out] data Buffer that eventually receive the cardridge data. It must be initialized and big enougth.
-  * @return 0 if the file exists, 1 otherwise.
+  * @return The number of bytes read if the file exists, -1 otherwise.
   */
 int readCartridge(const char* const filename, char* data);
 

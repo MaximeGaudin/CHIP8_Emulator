@@ -30,9 +30,9 @@
 
 int readCartridge(const char* const filename, char* data) {
 	FILE* cartridge =fopen (filename,"r");
-	int i;
+	int i = 0;
 
-	if (cartridge==NULL) return 1;
+	if (cartridge==NULL) return -1;
 	else
 	{
 		do {
@@ -41,5 +41,5 @@ int readCartridge(const char* const filename, char* data) {
 		fclose (cartridge);
 	}
 
-	return 0;
+	return i;
 }
