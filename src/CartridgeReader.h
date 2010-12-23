@@ -33,6 +33,6 @@
   * @param [out] data Buffer that eventually receive the cardridge data. It must be initialized and big enougth.
   * @return The number of bytes read if the file exists, -1 otherwise.
   */
-int readCartridge(const char* const filename, char* data);
+int readCartridge(const char* const filename, unsigned char* data);
 
 #endif // CARTRIDGE_READER_HEADER

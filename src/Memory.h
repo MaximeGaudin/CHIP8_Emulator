@@ -58,7 +58,7 @@ void cleanupMemory();
  * @param [in] len Number of byte written
  * @return 0 if success, 1 otherwise.
  */
-int write(unsigned short addr, char* const data, unsigned int len);
+int write(unsigned short addr, unsigned char* const data, unsigned int len);
 
 /**
  * @brief Read [len] bytes of data from address [addr] to buffer
@@ -67,5 +67,5 @@ int write(unsigned short addr, char* const data, unsigned int len);
  * @param [out] buffer Pointer to the data buffer
  * @return 0 if success, 1 otherwise.
  */
-int read(short addr, unsigned short len, char* const buffer);
+int read(short addr, unsigned short len, unsigned char* const buffer);
 #endif // MEMORY_HEADER

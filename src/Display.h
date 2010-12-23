@@ -41,7 +41,7 @@ int cleanupDisplay();
   */
 int drawSprite(unsigned char X, unsigned char Y,const char* const spriteData, unsigned char len);
 
-void render();
+void render(int);
 
 /**
   * @brief Clear screen

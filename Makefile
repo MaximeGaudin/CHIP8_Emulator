@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-W -Wall -Wextra -ansi -pedantic -Wno-write-strings
+CFLAGS=-W -Wall -Wextra -ansi -pedantic -Wno-write-strings -g
 LDFLAGS=
 APPLEFLAGS=-framework GLUT -framework OPENGL
 EXEC=C8E

@@ -66,10 +66,10 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize memory to 0.  <a href="#a6d6c1629ffc4341b0027e9aafe68d3db"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8c.html#a22f843cd0d6e85d9afbfbf855e2affdf">cleanupMemory</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleanup all memory.  <a href="#a22f843cd0d6e85d9afbfbf855e2affdf"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8c.html#a2ca62c1f40a13fbfa46dc6c06ac13ccd">write</a> (unsigned short addr, char *const data, unsigned int len)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">write [len] bytes from [data] into memory at adress [addr]  <a href="#a2ca62c1f40a13fbfa46dc6c06ac13ccd"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8c.html#af753d66931772f77fe5839a65bbea8e1">read</a> (short addr, unsigned short len, char *const buffer)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Read [len] bytes of data from address [addr] to buffer.  <a href="#af753d66931772f77fe5839a65bbea8e1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8c.html#a6602b590d8f51e6235b29386e995a030">write</a> (unsigned short addr, unsigned char *const data, unsigned int len)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">write [len] bytes from [data] into memory at adress [addr]  <a href="#a6602b590d8f51e6235b29386e995a030"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8c.html#ad337d6a60f8276b9e887b4dd7b607080">read</a> (short addr, unsigned short len, unsigned char *const buffer)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Read [len] bytes of data from address [addr] to buffer.  <a href="#ad337d6a60f8276b9e887b4dd7b607080"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Define all functions, variables and defines for memory management. </p>
@@ -99,7 +99,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af753d66931772f77fe5839a65bbea8e1"></a><!-- doxytag: member="Memory.c::read" ref="af753d66931772f77fe5839a65bbea8e1" args="(short addr, unsigned short len, char *const buffer)" -->
+<a class="anchor" id="ad337d6a60f8276b9e887b4dd7b607080"></a><!-- doxytag: member="Memory.c::read" ref="ad337d6a60f8276b9e887b4dd7b607080" args="(short addr, unsigned short len, unsigned char *const buffer)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -118,7 +118,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *const &#160;</td>
+          <td class="paramtype">unsigned char *const &#160;</td>
           <td class="paramname"> <em>buffer</em>&#160;</td>
         </tr>
         <tr>
@@ -166,7 +166,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2ca62c1f40a13fbfa46dc6c06ac13ccd"></a><!-- doxytag: member="Memory.c::write" ref="a2ca62c1f40a13fbfa46dc6c06ac13ccd" args="(unsigned short addr, char *const data, unsigned int len)" -->
+<a class="anchor" id="a6602b590d8f51e6235b29386e995a030"></a><!-- doxytag: member="Memory.c::write" ref="a6602b590d8f51e6235b29386e995a030" args="(unsigned short addr, unsigned char *const data, unsigned int len)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -179,7 +179,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *const &#160;</td>
+          <td class="paramtype">unsigned char *const &#160;</td>
           <td class="paramname"> <em>data</em>, </td>
         </tr>
         <tr>
@@ -227,7 +227,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Dec 23 2010 17:34:31 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Dec 23 2010 19:49:38 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

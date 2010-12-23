@@ -25,23 +25,26 @@
  */
 
 #include "Display.h"
+
 #include <string.h>
 #include <stdlib.h>
-
 #ifdef WINDOWS
 #include <GL/glut.h>
 #else
 #include <GLUT/glut.h>
 #endif
 
+#include "Logs.h"
 
 #define SCREEN_WIDTH 64
 #define SCREEN_HEIGTH 32
 
+#define DISPLAY_IDLE_TIME 16
+
 static bool* bitmap;
 
 int setupDisplay(int argc, char** argv) {
-	bitmap = (bool*)malloc(SCREEN_WIDTH * SCREEN_HEIGTH * sizeof(bool));
+	bitmap = (bool*)calloc(SCREEN_WIDTH * SCREEN_HEIGTH, sizeof(bool));
 	if(bitmap == NULL) return 1;
 
 	glutInit(&argc, argv);
@@ -57,7 +60,9 @@ int cleanupDisplay() {
 	return 0;
 }
 
-void render() {
+void render(int) {
+	addEntry(LOW_LEVEL_OPERATION, "Dessin !");
+	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -71,6 +76,7 @@ void render() {
 			}
 
 	glutSwapBuffers();
+	glutTimerFunc(DISPLAY_IDLE_TIME, render, 0);
 }
 
 int clearScreen() {

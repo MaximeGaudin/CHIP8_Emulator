@@ -41,7 +41,7 @@ void cleanupMemory() {
 	free(memory);
 }
 
-int write(unsigned short addr, char* const data, unsigned int len) {
+int write(unsigned short addr, unsigned char* const data, unsigned int len) {
 	addEntry(LOW_LEVEL_OPERATION, "Write attempt...");	
 	
 	if(addr + len < DATA_SPACE_STOP) {
@@ -53,7 +53,7 @@ int write(unsigned short addr, char* const data, unsigned int len) {
 	return 1;
 }
 
-int read(short addr, unsigned short len, char* const buffer) {
+int read(short addr, unsigned short len, unsigned char* const buffer) {
 	addEntry(LOW_LEVEL_OPERATION, "Read attempt...");	
 	
 	if(addr + len < DATA_SPACE_STOP) {

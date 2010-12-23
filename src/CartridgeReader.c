@@ -27,8 +27,7 @@
 #include "CartridgeReader.h"
 #include <stdio.h>
 
-
-int readCartridge(const char* const filename, char* data) {
+int readCartridge(const char* const filename, unsigned char* data) {
 	FILE* cartridge =fopen (filename,"r");
 	int i = 0;
 
@@ -36,8 +35,8 @@ int readCartridge(const char* const filename, char* data) {
 	else
 	{
 		do {
-			data[i] = getc (cartridge);
-		} while (data[i++] != EOF);
+			data[i] = (unsigned char)getc (cartridge);
+		} while ((signed char)data[i++] != EOF);
 		fclose (cartridge);
 	}
 
