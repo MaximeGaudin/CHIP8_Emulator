@@ -39,4 +39,10 @@ int setupDisplay();
   */
 int drawSprite(unsigned char X, unsigned char Y,const char* const spriteData, unsigned char len);
 
+/**
+  * @brief Clear screen
+  * @return 1 if any pixel has been erase, 0 Otherwise.
+  */
+int clearScreen();
+
 #endif // DISPLAY_HEADER

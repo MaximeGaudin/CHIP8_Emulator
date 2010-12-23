@@ -25,8 +25,10 @@
  */
 
 #include "CPU.h"
-#include "Memory.h"
 #include "Logs.h"
+
+#include "Display.h"
+#include "Memory.h"
 
 /// @brief Address register
 static unsigned short I; 
@@ -43,7 +45,7 @@ static unsigned char* registers;
 /// @brief The program counter register : Specifies the currently executing address
 static unsigned short pc;
 
-/// @brief The stack pointer : Point the upmost level of stack
+/// @brief The stack pointer : Point the upmost level of stack, i.e. 1 level more than the last stacked address.
 static unsigned char sp;
 
 /// @brief Contains return address of subroutines
@@ -78,18 +80,18 @@ void cleanupCPU() {
   *
   */
 inline static void opCLS() {
-
+	clearScreen();
 }
 
 /**
   * @brief Return from sub routine.
-  * Thus, the CPU set the pc to the address contained in stack[sp] and decrement sp by 1.
+  * Thus, the CPU set the pc to the address contained in stack[sp - 1] and decrement sp by 1.
   * Mnemonic = RET
   * Opcode : 0x00EE
   */
 inline static void opRET() {
 	addEntry(DISASSEMBLY, "RET");
-	pc = stack[sp--];
+	pc = stack[--sp];
 }
 
 /**
@@ -97,10 +99,21 @@ inline static void opRET() {
   * i.e. set pc to addr - 2 (because it will be incremented before the next CPU cycle )
   * Mnemonic = JP
   * opCode : 0x1NNN
-  * param [in] addr Address of the nezt intruction to execute.
+  * param [in] addr Address of the next intruction to execute.
   */
 inline static void opJP(unsigned short addr) {
 	pc = addr - 2;	
+}
+
+/**
+  * @brief Jump unconditionnaly to addr [nnn] + V[0], 
+  * i.e. set pc to [nnn] + V[0] - 2 (because it will be incremented before the next CPU cycle )
+  * Mnemonic = JP0
+  * opCode : 0xBnnn
+  * param [in] nnn Address to jump to minus value of V[0]
+  */
+inline static void opJP(unsigned short nnn) {
+	pc = nnn + v[0] - 2;	
 }
 
 /**
@@ -111,7 +124,8 @@ inline static void opJP(unsigned short addr) {
   * param [in] address Address of the subroutine to call.
   */
 inline static void opCALL(unsigned short addr) {
-	
+	stack[sp++] = pc;
+	pc = addr - 2;
 }
 
 /**
@@ -146,6 +160,17 @@ inline static void opSE2(unsigned char X, unsigned char Y) {
 inline static void opSNE(unsigned char X, unsigned char kk) {
 	if(registers[X] =! kk) pc += 2;
 }
+/**
+  * Skip if not equal : Skip next instruction if V[X] != V[Y]
+  * Mnemonic = SNE 
+  * opCode = 0x9XY0
+  * param [in] X Index of the left-hand register
+  * param [in] Y Index of the right-hand register
+  */
+inline static void opSNE2(unsigned char X, unsigned char Y) {
+	if(registers[X] != registers[Y]) pc += 2;
+}
+
 
 /**
   * Move value : Put value kk into register X.
@@ -167,6 +192,46 @@ inline static void opMOV(unsigned char X, unsigned char kk) {
   */
 inline static void opMOV2(unsigned char X, unsigned char Y) {
 	registers[X] = registers[Y];
+}
+
+/**
+  * Move value : Put value nnn into register I.
+  * Mnemonic = MOVI
+  * opCode = 0xAnnn
+  * param [in] nnn Value to store
+  */
+inline static void opMOVI(unsigned short nnn) {
+	I = nnn;
+}
+
+/**
+  * Move value : Put value from the delay timer to V[X].
+  * Mnemonic = MOVFD
+  * opCode = 0xFX07
+  * param [in] X Index of the destination register.
+  */
+inline static void opMOVFD(unsigned short X) {
+	 V[X] = delay;
+}
+
+/**
+  * Move value : Put value from V[X] into register the delay timer.
+  * Mnemonic = MOVD
+  * opCode = 0xFX18
+  * param [in] X Index of the source register.
+  */
+inline static void opMOVD(unsigned short X) {
+	delay = V[X];
+}
+
+/**
+  * Move value : Put value from V[X] into register the sound timer.
+  * Mnemonic = MOVS
+  * opCode = 0xFX18
+  * param [in] X Index of the source register.
+  */
+inline static void opMOVS(unsigned short X) {
+	sound = V[X];
 }
 
 /**
@@ -279,7 +344,6 @@ inline static void opAND(unsigned char X, unsigned char Y) {
 inline static void opXOR(unsigned char X, unsigned char Y) {
 	registers[X] ^= registers[Y];
 }
-
 
 void tick() {
 	// WHILE SMTH
