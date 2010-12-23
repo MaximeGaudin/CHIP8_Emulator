@@ -60,25 +60,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00011"></a>00011 
 <a name="l00012"></a><a class="code" href="_c8_e_8c.html#a280c85d6635d18ebcd908d2f96c34bca">00012</a> <span class="preprocessor">#define IDLE_TIME 16</span>
 <a name="l00013"></a>00013 <span class="preprocessor"></span>
-<a name="l00014"></a><a class="code" href="_c8_e_8c.html#a31d8f4dcf386765eadb80f21404097cf">00014</a> <span class="keywordtype">void</span> <a class="code" href="_c8_e_8c.html#a31d8f4dcf386765eadb80f21404097cf">tick</a>(<span class="keywordtype">int</span>) {
-<a name="l00015"></a>00015         <span class="comment">// CPUTick();</span>
-<a name="l00016"></a>00016         <span class="comment">// render();</span>
-<a name="l00017"></a>00017 
-<a name="l00018"></a>00018         glutTimerFunc(<a class="code" href="_c8_e_8c.html#a280c85d6635d18ebcd908d2f96c34bca">IDLE_TIME</a>, <a class="code" href="_c8_e_8c.html#a31d8f4dcf386765eadb80f21404097cf">tick</a>, 0);
-<a name="l00019"></a>00019 }
-<a name="l00020"></a>00020 
-<a name="l00021"></a><a class="code" href="_c8_e_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">00021</a> <span class="keywordtype">int</span> <a class="code" href="_c8_e_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) {
-<a name="l00022"></a>00022         <a class="code" href="_logs_8c.html#ad89cafdb14cc423604c1c964b3962685" title="Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is ...">setupLogs</a>(1, <a class="code" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0acca8e26d968aedd3f08f936a78e17948">LOW_LEVEL_OPERATION</a>, <a class="code" href="_logs_8h.html#a42afc88602c0461cee5e431d7fa6120c" title="Specifies the default output filename, i.e. the file where log will be written.">DEFAULT_OUTPUT_FILENAME</a>);
-<a name="l00023"></a>00023         <a class="code" href="_memory_8c.html#a6d6c1629ffc4341b0027e9aafe68d3db" title="Initialize memory to 0.">setupMemory</a>();
-<a name="l00024"></a>00024         <a class="code" href="_display_8c.html#afa29b062ea79ca370124df82b70b0ce5" title="Setup all display related memory buffer and glut framework.">setupDisplay</a>(argc, argv);
-<a name="l00025"></a>00025 
-<a name="l00026"></a>00026         glutMainLoop();
-<a name="l00027"></a>00027 
-<a name="l00028"></a>00028         <a class="code" href="_display_8c.html#a481567e9ce4ae7f8fc4ac8e9d2d91c93">cleanupDisplay</a>();
-<a name="l00029"></a>00029         <a class="code" href="_memory_8c.html#a22f843cd0d6e85d9afbfbf855e2affdf" title="Cleanup all memory.">cleanupMemory</a>();
-<a name="l00030"></a>00030         <a class="code" href="_logs_8c.html#a8fad8103564f0c127725d2bd134381d8" title="Close output log file descriptor and flush file buffer.">closeLogs</a>();
-<a name="l00031"></a>00031         <span class="keywordflow">return</span> 0;
-<a name="l00032"></a>00032 }
+<a name="l00014"></a><a class="code" href="_c8_e_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">00014</a> <span class="keywordtype">int</span> <a class="code" href="_c8_e_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) {
+<a name="l00015"></a>00015         <a class="code" href="_logs_8c.html#ad89cafdb14cc423604c1c964b3962685" title="Setup output log file and debug level to values passed in paramaters. Moreover, a file descriptor is ...">setupLogs</a>(1, <a class="code" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0acca8e26d968aedd3f08f936a78e17948">LOW_LEVEL_OPERATION</a>, <a class="code" href="_logs_8h.html#a42afc88602c0461cee5e431d7fa6120c" title="Specifies the default output filename, i.e. the file where log will be written.">DEFAULT_OUTPUT_FILENAME</a>);
+<a name="l00016"></a>00016         <a class="code" href="_memory_8c.html#a6d6c1629ffc4341b0027e9aafe68d3db" title="Initialize memory to 0.">setupMemory</a>();
+<a name="l00017"></a>00017         <a class="code" href="_display_8c.html#afa29b062ea79ca370124df82b70b0ce5" title="Setup all display related memory buffer and glut framework.">setupDisplay</a>(argc, argv);
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019         glutDisplayFunc(<a class="code" href="_display_8c.html#a7d9edd8b0a8d0d2f737eb5ee0b0a5040">render</a>);
+<a name="l00020"></a>00020         <span class="comment">//glutMotionFunc(CPUTick);</span>
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022         glutMainLoop();
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024         <a class="code" href="_display_8c.html#a481567e9ce4ae7f8fc4ac8e9d2d91c93">cleanupDisplay</a>();
+<a name="l00025"></a>00025         <a class="code" href="_memory_8c.html#a22f843cd0d6e85d9afbfbf855e2affdf" title="Cleanup all memory.">cleanupMemory</a>();
+<a name="l00026"></a>00026         <a class="code" href="_logs_8c.html#a8fad8103564f0c127725d2bd134381d8" title="Close output log file descriptor and flush file buffer.">closeLogs</a>();
+<a name="l00027"></a>00027         <span class="keywordflow">return</span> 0;
+<a name="l00028"></a>00028 }
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -95,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Dec 23 2010 17:23:53 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Dec 23 2010 17:34:31 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

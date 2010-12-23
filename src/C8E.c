@@ -11,17 +11,13 @@
 
 #define IDLE_TIME 16
 
-void tick(int) {
-	// CPUTick();
-	// render();
-
-	glutTimerFunc(IDLE_TIME, tick, 0);
-}
-
 int main(int argc, char** argv) {
 	setupLogs(1, LOW_LEVEL_OPERATION, DEFAULT_OUTPUT_FILENAME);
 	setupMemory();
 	setupDisplay(argc, argv);
+
+	glutDisplayFunc(render);
+	//glutMotionFunc(CPUTick);
 
 	glutMainLoop();
 

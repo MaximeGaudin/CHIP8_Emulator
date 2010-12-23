@@ -57,7 +57,7 @@ int cleanupDisplay() {
 	return 0;
 }
 
-int render() {
+void render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -71,8 +71,6 @@ int render() {
 			}
 
 	glutSwapBuffers();
-
-	return 0;
 }
 
 int clearScreen() {
