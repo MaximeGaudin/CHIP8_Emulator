@@ -11,14 +11,14 @@
 #include "CartridgeReader.h"
 #include "Display.h"
 
-void printUsage() {
+void printUsage() 
+{
     printf("C8E - Chip8 Emulator ***********\n");
     printf("***** Usage :\n");
     printf("***** ./C8E ROM_PATH\n");
     printf("********************************\n");
 
-    exit(0);
-}
+    exit(0);}
 
 int main(int argc, char** argv) {
     if(argc != 2) printUsage();
