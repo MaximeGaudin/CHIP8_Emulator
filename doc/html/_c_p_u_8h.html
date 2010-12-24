@@ -44,6 +44,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Defines</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <h1>src/CPU.h File Reference</h1>  </div>
 </div>
@@ -51,6 +54,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><a href="_c_p_u_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8h.html#accbb358028675c83675d8b34c386268d">MAX_STACK_SIZE</a>&#160;&#160;&#160;0xF</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the maximum stack size, i.e. the maximum amount of subroutine calls.  <a href="#accbb358028675c83675d8b34c386268d"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8h.html#ab964a69bfa48d0b407b523af246d4e85">setupCPU</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8h.html#a98d3238611a756f7870731cd763dd5ca">cleanupCPU</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8h.html#a873dd91783f9efb4a590aded1f70d6b0">tick</a> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <dl class="version"><dt><b>Version:</b></dt><dd>0.1 </dd></dl>
@@ -58,6 +70,79 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dl class="author"><dt><b>Author:</b></dt><dd>Maxime Gaudin </dd></dl>
 
 <p>Definition in file <a class="el" href="_c_p_u_8h_source.html">CPU.h</a>.</p>
+<hr/><h2>Define Documentation</h2>
+<a class="anchor" id="accbb358028675c83675d8b34c386268d"></a><!-- doxytag: member="CPU.h::MAX_STACK_SIZE" ref="accbb358028675c83675d8b34c386268d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_STACK_SIZE&#160;&#160;&#160;0xF</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Define the maximum stack size, i.e. the maximum amount of subroutine calls. </p>
+
+<p>Definition at line <a class="el" href="_c_p_u_8h_source.html#l00031">31</a> of file <a class="el" href="_c_p_u_8h_source.html">CPU.h</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a98d3238611a756f7870731cd763dd5ca"></a><!-- doxytag: member="CPU.h::cleanupCPU" ref="a98d3238611a756f7870731cd763dd5ca" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cleanupCPU </td>
+          <td>(</td>
+          <td class="paramname">&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00071">71</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab964a69bfa48d0b407b523af246d4e85"></a><!-- doxytag: member="CPU.h::setupCPU" ref="ab964a69bfa48d0b407b523af246d4e85" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int setupCPU </td>
+          <td>(</td>
+          <td class="paramname">&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00054">54</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a873dd91783f9efb4a590aded1f70d6b0"></a><!-- doxytag: member="CPU.h::tick" ref="a873dd91783f9efb4a590aded1f70d6b0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tick </td>
+          <td>(</td>
+          <td class="paramname">&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00348">348</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
+
+</div>
+</div>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -73,7 +158,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 13 2010 20:44:26 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 24 2010 16:19:40 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

@@ -1,17 +1,17 @@
 /*	This file is part of C8E.
- *       
+ *
  *       C8E is free software: you can redistribute it and/or modify
  *       it under the terms of the GNU General Public License as published by
  *       the Free Software Foundation, either version 3 of the License, or
  *       (at your option) any later version.
- *       
+ *
  *       C8E is distributed in the hope that it will be useful,
  *              but WITHOUT ANY WARRANTY; without even the implied warranty of
  *              MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *              GNU General Public License for more details.
- *       
+ *
  *              You should have received a copy of the GNU General Public License
- *              along with C8E.  If not, see <http://www.gnu.org/licenses/>. 
+ *              along with C8E.  If not, see <http://www.gnu.org/licenses/>.
  *
  *		Author : Maxime Gaudin
  */
@@ -24,19 +24,16 @@
  * @author Maxime Gaudin
  */
 
-#ifndef CPU_HEADER 
-#define CPU_HEADER 
+#ifndef CPU_HEADER
+#define CPU_HEADER
 
-/// @brief Address register
-static unsigned short I; 
+/// @brief Define the maximum stack size, i.e. the maximum amount of subroutine calls.
+#define MAX_STACK_SIZE 0xF
 
-/// @brief Delay register - Decremented every 17 ms (60Hz)
-static unsigned char delay;
+int setupCPU();
 
-/// @brief Sound register - Decremented every 17 ms (60Hz)
-static unsigned char sound;
+void cleanupCPU();
 
-/// @brief General purpose registers
-static unsigned char* registers; 
+void tick();
 
 #endif // CPU_HEADER
