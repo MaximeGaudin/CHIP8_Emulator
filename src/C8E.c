@@ -33,7 +33,6 @@ int main(int argc, char** argv) {
     write(DATA_SPACE_START, programBuffer, len);
 
     /* CPUTick(0); */
-    render(0);
 
     glutMainLoop();
 

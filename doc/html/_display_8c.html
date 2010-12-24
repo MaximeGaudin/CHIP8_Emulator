@@ -63,13 +63,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a2cd109632a6dcccaa80b43561b1ab700">SCREEN_WIDTH</a>&#160;&#160;&#160;64</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a25f7ae536603397e929ff4941e253200">SCREEN_HEIGTH</a>&#160;&#160;&#160;32</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a7ca5e0dffc790d1f46bc07dd5f6c810f">SCREEN_RATIO</a>&#160;&#160;&#160;10</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a0ee93fbb701859705213344c5514f6a9">DISPLAY_IDLE_TIME</a>&#160;&#160;&#160;16</td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a6819355374dd277347abd7c4235f0cd7">reshape</a> (int width, int height)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#afa29b062ea79ca370124df82b70b0ce5">setupDisplay</a> (int argc, char **argv)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup all display related memory buffer and glut framework.  <a href="#afa29b062ea79ca370124df82b70b0ce5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a481567e9ce4ae7f8fc4ac8e9d2d91c93">cleanupDisplay</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a112be8a62cc5d91a6d5252686929b70f">render</a> (int frame)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a7d9edd8b0a8d0d2f737eb5ee0b0a5040">render</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a5de872d4f34395091e277029250eb0b4">clearScreen</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear screen.  <a href="#a5de872d4f34395091e277029250eb0b4"></a><br/></td></tr>
 </table>
@@ -85,7 +87,7 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_display_8c_source.html#l00042">42</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
+<p>Definition at line <a class="el" href="_display_8c_source.html#l00043">43</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
 
 </div>
 </div>
@@ -101,6 +103,21 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="_display_8c_source.html#l00040">40</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7ca5e0dffc790d1f46bc07dd5f6c810f"></a><!-- doxytag: member="Display.c::SCREEN_RATIO" ref="a7ca5e0dffc790d1f46bc07dd5f6c810f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SCREEN_RATIO&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_display_8c_source.html#l00041">41</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
 
 </div>
 </div>
@@ -134,7 +151,7 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_display_8c_source.html#l00057">57</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
+<p>Definition at line <a class="el" href="_display_8c_source.html#l00065">65</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
 
 </div>
 </div>
@@ -155,26 +172,54 @@ Functions</h2></td></tr>
 <p>Clear screen. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>1 if any pixel has been erase, 0 Otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="_display_8c_source.html#l00083">83</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
+<p>Definition at line <a class="el" href="_display_8c_source.html#l00111">111</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a112be8a62cc5d91a6d5252686929b70f"></a><!-- doxytag: member="Display.c::render" ref="a112be8a62cc5d91a6d5252686929b70f" args="(int frame)" -->
+<a class="anchor" id="a7d9edd8b0a8d0d2f737eb5ee0b0a5040"></a><!-- doxytag: member="Display.c::render" ref="a7d9edd8b0a8d0d2f737eb5ee0b0a5040" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void render </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"> <em>frame</em>&#160;)</td>
+          <td class="paramname">&#160;)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_display_8c_source.html#l00063">63</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
+<p>Definition at line <a class="el" href="_display_8c_source.html#l00085">85</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6819355374dd277347abd7c4235f0cd7"></a><!-- doxytag: member="Display.c::reshape" ref="a6819355374dd277347abd7c4235f0cd7" args="(int width, int height)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void reshape </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"> <em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"> <em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_display_8c_source.html#l00071">71</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
 
 </div>
 </div>
@@ -205,7 +250,7 @@ Functions</h2></td></tr>
 
 <p>Setup all display related memory buffer and glut framework. </p>
 
-<p>Definition at line <a class="el" href="_display_8c_source.html#l00046">46</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
+<p>Definition at line <a class="el" href="_display_8c_source.html#l00050">50</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
 
 </div>
 </div>
@@ -224,7 +269,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 24 2010 15:56:55 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 24 2010 16:18:46 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>
