@@ -25,8 +25,11 @@
  */
 
 #include "CPU.h"
-#include "Logs.h"
 
+#include <stdlib.h>
+#include <time.h>
+
+#include "Logs.h"
 #include "Display.h"
 #include "Memory.h"
 
@@ -52,6 +55,7 @@ static unsigned char sp;
 static unsigned short* stack;
 
 int setupCPU() {
+time_t seconds;
     addEntry(LOW_LEVEL_OPERATION, "CPU initialization ...");
 
     I = delay = sound = sp = 0;
@@ -64,6 +68,9 @@ int setupCPU() {
     if(stack == NULL) return 1;
 
     addEntry(LOW_LEVEL_OPERATION, "CPU initialized.");
+
+time(&seconds);
+srand((unsigned int) seconds);
 
     return 0;
 }
@@ -343,6 +350,24 @@ inline static void opAND(unsigned char X, unsigned char Y) {
   */
 inline static void opXOR(unsigned char X, unsigned char Y) {
     registers[X] ^= registers[Y];
+}
+
+/**
+  * Generate a rabdom byte : Set V[X] = RND & [kk]
+  * Mnemonic = RND
+  * opCode = 0xCXkk
+  * param [in] X Index of the destination register
+  * param [in] kk Byte with wich generated number will be anded.
+  */
+inline static void opRND(unsigned char X, unsigned short kk) {
+ 	registers[X] = (unsigned char)((rand() % 254) & kk);	
+}
+
+/**
+  * 
+  */
+inline static void opDRW(unsigned char X, unsigned char Y, unsigned char n) {
+	drawSprite(registers[x], registers[Y], memory + I, n);		
 }
 
 void tick() {
