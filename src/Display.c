@@ -44,70 +44,69 @@
 
 static unsigned char* bitmap;
 
-/* void render(); */
+void render();
 void reshape(int width, int height);
 
 int setupDisplay(int argc, char** argv) {
-	bitmap = (unsigned char*)calloc(SCREEN_WIDTH * SCREEN_HEIGTH, sizeof(unsigned char));
-	if(bitmap == NULL) return 1;
+    bitmap = (unsigned char*)calloc(SCREEN_WIDTH * SCREEN_HEIGTH, sizeof(unsigned char));
+    if(bitmap == NULL) return 1;
 
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-	glutInitWindowSize(SCREEN_WIDTH * SCREEN_RATIO, SCREEN_HEIGTH * SCREEN_RATIO);
-	glutCreateWindow("Chip8 emu");
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
+    glutInitWindowSize(SCREEN_WIDTH * SCREEN_RATIO, SCREEN_HEIGTH * SCREEN_RATIO);
+    glutCreateWindow("Chip8 emu");
 
-	glutReshapeFunc(reshape);
-	glutDisplayFunc(render);
+    glutReshapeFunc(reshape);
+    glutDisplayFunc(render);
 
-	return 0;
+    return 0;
 }
 
 int cleanupDisplay() {
-	free(bitmap);
+    free(bitmap);
 
-	return 0;
+    return 0;
 }
 
-void reshape(int width, int height)
-{
-	glViewport(0,0,width,height);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(
-			45,
-			(float)(width)/(float)(height),
-			0.1,
-			100
-		      );
-	glMatrixMode(GL_MODELVIEW);
-} 
+void reshape(int width, int height) {
+    glViewport(0,0,width,height);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(
+        45,
+        (float)(width)/(float)(height),
+        0.1,
+        100
+    );
+    glMatrixMode(GL_MODELVIEW);
+}
 
 void render() {
-	int i = 0;
+    int i = 0;
 
-	addEntry(LOW_LEVEL_OPERATION, "Drawing ...");
+    addEntry(LOW_LEVEL_OPERATION, "Drawing ...");
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 
-	gluLookAt(0,0,-12,0,0,0,0,1,0);
+    gluLookAt(0,0,-12,0,0,0,0,1,0);
 
-	for(i=0; i<SCREEN_HEIGTH * SCREEN_WIDTH; ++i)
-		if(bitmap[i]) {
-			glPushMatrix();
-			glTranslated(SCREEN_RATIO * (i % SCREEN_WIDTH), SCREEN_RATIO * (i / SCREEN_WIDTH), 0);
-			glScaled(2, 1, 0);
-			glutSolidCube(SCREEN_RATIO);
-			glPopMatrix();
-		}
+    for(i=0; i<SCREEN_HEIGTH * SCREEN_WIDTH; ++i)
+        if(bitmap[i]) {
+            glPushMatrix();
+            glTranslated(SCREEN_RATIO * (i % SCREEN_WIDTH), SCREEN_RATIO * (i / SCREEN_WIDTH), 0);
+            glScaled(2, 1, 0);
+            glutSolidCube(SCREEN_RATIO);
+            glPopMatrix();
+        }
 
-	glutSwapBuffers();
-	addEntry(LOW_LEVEL_OPERATION, "Drawing done.");
+    glutSwapBuffers();
+    addEntry(LOW_LEVEL_OPERATION, "Drawing done.");
 
-	glutPostRedisplay();
+    glutPostRedisplay();
 }
 
 int clearScreen() {
-	return (bitmap == memset(bitmap, 0, SCREEN_WIDTH * SCREEN_HEIGTH)) ? 0 : 1;
+    return (bitmap == memset(bitmap, 0, SCREEN_WIDTH * SCREEN_HEIGTH)) ? 0 : 1;
 }

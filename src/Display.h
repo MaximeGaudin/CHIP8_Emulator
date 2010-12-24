@@ -41,8 +41,6 @@ int cleanupDisplay();
   */
 int drawSprite(unsigned char X, unsigned char Y,const char* const spriteData, unsigned char len);
 
-void render();
-
 /**
   * @brief Clear screen
   * @return 1 if any pixel has been erase, 0 Otherwise.
