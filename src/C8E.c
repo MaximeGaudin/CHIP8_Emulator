@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
     setupLogs(1, LOW_LEVEL_OPERATION, DEFAULT_OUTPUT_FILENAME);
     setupMemory();
     setupDisplay(argc, argv);
- 
+
     len = readCartridge(argv[1], programBuffer);
     write(DATA_SPACE_START, programBuffer, len);
 

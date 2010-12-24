@@ -61,7 +61,7 @@ int cleanupDisplay() {
 }
 
 void render(int frame) {
-	int i = 0;
+    int i = 0;
 
     addEntry(LOW_LEVEL_OPERATION, "Dessin !");
 
