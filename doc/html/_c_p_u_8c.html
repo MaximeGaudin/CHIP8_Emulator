@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <code>#include &quot;<a class="el" href="_c_p_u_8h_source.html">CPU.h</a>&quot;</code><br/>
+<code>#include &lt;GLUT/glut.h&gt;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;time.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="_logs_8h_source.html">Logs.h</a>&quot;</code><br/>
@@ -61,9 +62,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8c.html#a97a937f41477ecfc75babcea72b7d8de">CPUTick</a> (int)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8c.html#ab964a69bfa48d0b407b523af246d4e85">setupCPU</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8c.html#a98d3238611a756f7870731cd763dd5ca">cleanupCPU</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8c.html#a873dd91783f9efb4a590aded1f70d6b0">tick</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_p_u_8c.html#a36ad4c89710572fc26b7d93fa08d89e6">handleOpCode</a> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
@@ -87,7 +88,26 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00078">78</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
+<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00088">88</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a97a937f41477ecfc75babcea72b7d8de"></a><!-- doxytag: member="CPU.c::CPUTick" ref="a97a937f41477ecfc75babcea72b7d8de" args="(int)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CPUTick </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"> <em>na</em>&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00383">383</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
 
 </div>
 </div>
@@ -105,7 +125,7 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00378">378</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
+<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00389">389</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
 
 </div>
 </div>
@@ -123,25 +143,7 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00057">57</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a873dd91783f9efb4a590aded1f70d6b0"></a><!-- doxytag: member="CPU.c::tick" ref="a873dd91783f9efb4a590aded1f70d6b0" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tick </td>
-          <td>(</td>
-          <td class="paramname">&#160;)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00373">373</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
+<p>Definition at line <a class="el" href="_c_p_u_8c_source.html#l00065">65</a> of file <a class="el" href="_c_p_u_8c_source.html">CPU.c</a>.</p>
 
 </div>
 </div>
@@ -160,7 +162,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 24 2010 16:38:16 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 24 2010 18:10:54 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

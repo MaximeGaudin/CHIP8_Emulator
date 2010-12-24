@@ -9,7 +9,7 @@ BIN_DIR=bin/
 
 all: $(BIN_DIR)$(EXEC)
 
-$(BIN_DIR)$(EXEC): $(BIN_DIR)C8E.o $(BIN_DIR)Logs.o $(BIN_DIR)Memory.o $(BIN_DIR)CartridgeReader.o $(BIN_DIR)Display.o
+$(BIN_DIR)$(EXEC): $(BIN_DIR)C8E.o $(BIN_DIR)Logs.o $(BIN_DIR)Memory.o $(BIN_DIR)CartridgeReader.o $(BIN_DIR)Display.o $(BIN_DIR)CPU.o
 	$(CC) -o $@ $(APPLEFLAGS) $^ $(CFLAGS)
 
 $(BIN_DIR)%.o: $(SRC_DIR)%.c
