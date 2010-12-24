@@ -35,11 +35,11 @@ int main(int argc, char** argv) {
 
     /* CPUTick(0); */
 
-	setupCPU();
+    setupCPU();
 
     glutMainLoop();
 
-	cleanupCPU();
+    cleanupCPU();
     cleanupDisplay();
     cleanupMemory();
     closeLogs();

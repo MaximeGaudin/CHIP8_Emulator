@@ -80,7 +80,7 @@ int setupCPU() {
     time(&seconds);
     srand((unsigned int) seconds);
 
-	glutTimerFunc(16, CPUTick, 0);
+    glutTimerFunc(16, CPUTick, 0);
 
     return 0;
 }
@@ -377,19 +377,19 @@ __inline__ static void opRND(unsigned char X, unsigned short kk) {
   *
   */
 __inline__ static void opDRW(unsigned char X, unsigned char Y, unsigned char n) {
-	/*    drawSprite(registers[X], registers[Y], memory + I, n); */
+    /*    drawSprite(registers[X], registers[Y], memory + I, n); */
 }
 
 void CPUTick(int na) {
     /* handleOpCode(); */
-	printf("CPU %d\n", na);
-	glutTimerFunc(16, CPUTick, 0);
+    printf("CPU %d\n", na);
+    glutTimerFunc(16, CPUTick, 0);
 }
 
 void handleOpCode() {
     unsigned short opCode;
     unsigned char byte1, byte2;
-    
+
     read(pc, 2, (unsigned char*)(&opCode));
     byte1 = 0x01 & opCode;
     byte2 = 0x10 & opCode;
