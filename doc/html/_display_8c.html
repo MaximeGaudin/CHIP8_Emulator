@@ -69,7 +69,7 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#afa29b062ea79ca370124df82b70b0ce5">setupDisplay</a> (int argc, char **argv)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup all display related memory buffer and glut framework.  <a href="#afa29b062ea79ca370124df82b70b0ce5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a481567e9ce4ae7f8fc4ac8e9d2d91c93">cleanupDisplay</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a8603b5597262b8ea073170a21afef719">render</a> (int)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a112be8a62cc5d91a6d5252686929b70f">render</a> (int frame)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_8c.html#a5de872d4f34395091e277029250eb0b4">clearScreen</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear screen.  <a href="#a5de872d4f34395091e277029250eb0b4"></a><br/></td></tr>
 </table>
@@ -155,11 +155,11 @@ Functions</h2></td></tr>
 <p>Clear screen. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>1 if any pixel has been erase, 0 Otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="_display_8c_source.html#l00081">81</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
+<p>Definition at line <a class="el" href="_display_8c_source.html#l00083">83</a> of file <a class="el" href="_display_8c_source.html">Display.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8603b5597262b8ea073170a21afef719"></a><!-- doxytag: member="Display.c::render" ref="a8603b5597262b8ea073170a21afef719" args="(int)" -->
+<a class="anchor" id="a112be8a62cc5d91a6d5252686929b70f"></a><!-- doxytag: member="Display.c::render" ref="a112be8a62cc5d91a6d5252686929b70f" args="(int frame)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -167,7 +167,7 @@ Functions</h2></td></tr>
           <td class="memname">void render </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname">&#160;)</td>
+          <td class="paramname"> <em>frame</em>&#160;)</td>
           <td></td>
         </tr>
       </table>
@@ -224,7 +224,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Dec 23 2010 20:52:56 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 24 2010 15:56:33 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

@@ -82,10 +82,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00041"></a>00041 <span class="preprocessor"></span>
 <a name="l00042"></a><a class="code" href="_display_8c.html#a0ee93fbb701859705213344c5514f6a9">00042</a> <span class="preprocessor">#define DISPLAY_IDLE_TIME 16</span>
 <a name="l00043"></a>00043 <span class="preprocessor"></span>
-<a name="l00044"></a>00044 <span class="keyword">static</span> <span class="keywordtype">bool</span>* bitmap;
+<a name="l00044"></a>00044 <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* bitmap;
 <a name="l00045"></a>00045 
 <a name="l00046"></a><a class="code" href="_display_8h.html#afa29b062ea79ca370124df82b70b0ce5">00046</a> <span class="keywordtype">int</span> <a class="code" href="_display_8c.html#afa29b062ea79ca370124df82b70b0ce5" title="Setup all display related memory buffer and glut framework.">setupDisplay</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) {
-<a name="l00047"></a>00047     bitmap = (<span class="keywordtype">bool</span>*)calloc(<a class="code" href="_display_8c.html#a2cd109632a6dcccaa80b43561b1ab700">SCREEN_WIDTH</a> * <a class="code" href="_display_8c.html#a25f7ae536603397e929ff4941e253200">SCREEN_HEIGTH</a>, <span class="keyword">sizeof</span>(<span class="keywordtype">bool</span>));
+<a name="l00047"></a>00047     bitmap = (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*)calloc(<a class="code" href="_display_8c.html#a2cd109632a6dcccaa80b43561b1ab700">SCREEN_WIDTH</a> * <a class="code" href="_display_8c.html#a25f7ae536603397e929ff4941e253200">SCREEN_HEIGTH</a>, <span class="keyword">sizeof</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>));
 <a name="l00048"></a>00048     <span class="keywordflow">if</span>(bitmap == NULL) <span class="keywordflow">return</span> 1;
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050     glutInit(&amp;argc, argv);
@@ -101,27 +101,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00060"></a>00060     <span class="keywordflow">return</span> 0;
 <a name="l00061"></a>00061 }
 <a name="l00062"></a>00062 
-<a name="l00063"></a><a class="code" href="_display_8h.html#a8603b5597262b8ea073170a21afef719">00063</a> <span class="keywordtype">void</span> <a class="code" href="_display_8c.html#a8603b5597262b8ea073170a21afef719">render</a>(<span class="keywordtype">int</span>) {
-<a name="l00064"></a>00064     <a class="code" href="_logs_8c.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915" title="Add new entry in output log file if [level] is below or equal to debug level.">addEntry</a>(<a class="code" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0acca8e26d968aedd3f08f936a78e17948">LOW_LEVEL_OPERATION</a>, <span class="stringliteral">&quot;Dessin !&quot;</span>);
+<a name="l00063"></a><a class="code" href="_display_8h.html#a8603b5597262b8ea073170a21afef719">00063</a> <span class="keywordtype">void</span> <a class="code" href="_display_8c.html#a112be8a62cc5d91a6d5252686929b70f">render</a>(<span class="keywordtype">int</span> frame) {
+<a name="l00064"></a>00064         <span class="keywordtype">int</span> i = 0;
 <a name="l00065"></a>00065 
-<a name="l00066"></a>00066     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-<a name="l00067"></a>00067     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code" href="_display_8c.html#a25f7ae536603397e929ff4941e253200">SCREEN_HEIGTH</a> * <a class="code" href="_display_8c.html#a2cd109632a6dcccaa80b43561b1ab700">SCREEN_WIDTH</a>; ++i)
-<a name="l00070"></a>00070         <span class="keywordflow">if</span>(bitmap[i]) {
-<a name="l00071"></a>00071             glPushMatrix();
-<a name="l00072"></a>00072             glTranslated(i % SCREEN_WIDTH,i / SCREEN_WIDTH, 0);
-<a name="l00073"></a>00073             glutSolidCube(1);
-<a name="l00074"></a>00074             glPopMatrix();
-<a name="l00075"></a>00075         }
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077     glutSwapBuffers();
-<a name="l00078"></a>00078     glutTimerFunc(<a class="code" href="_display_8c.html#a0ee93fbb701859705213344c5514f6a9">DISPLAY_IDLE_TIME</a>, <a class="code" href="_display_8c.html#a8603b5597262b8ea073170a21afef719">render</a>, 0);
-<a name="l00079"></a>00079 }
-<a name="l00080"></a>00080 
-<a name="l00081"></a><a class="code" href="_display_8h.html#a5de872d4f34395091e277029250eb0b4">00081</a> <span class="keywordtype">int</span> <a class="code" href="_display_8c.html#a5de872d4f34395091e277029250eb0b4" title="Clear screen.">clearScreen</a>() {
-<a name="l00082"></a>00082     <span class="keywordflow">return</span> (bitmap == memset(bitmap, <span class="keyword">false</span>, <a class="code" href="_display_8c.html#a2cd109632a6dcccaa80b43561b1ab700">SCREEN_WIDTH</a> * <a class="code" href="_display_8c.html#a25f7ae536603397e929ff4941e253200">SCREEN_HEIGTH</a>)) ? 0 : 1;
-<a name="l00083"></a>00083 }
+<a name="l00066"></a>00066     <a class="code" href="_logs_8c.html#a1f83fa6e9ae57a1ee6ef7b1c7a8bd915" title="Add new entry in output log file if [level] is below or equal to debug level.">addEntry</a>(<a class="code" href="_logs_8h.html#a3434065dff12c09d99af118a688ca0d0acca8e26d968aedd3f08f936a78e17948">LOW_LEVEL_OPERATION</a>, <span class="stringliteral">&quot;Dessin !&quot;</span>);
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+<a name="l00069"></a>00069     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071     <span class="keywordflow">for</span>(i=0; i&lt;<a class="code" href="_display_8c.html#a25f7ae536603397e929ff4941e253200">SCREEN_HEIGTH</a> * <a class="code" href="_display_8c.html#a2cd109632a6dcccaa80b43561b1ab700">SCREEN_WIDTH</a>; ++i)
+<a name="l00072"></a>00072         <span class="keywordflow">if</span>(bitmap[i]) {
+<a name="l00073"></a>00073             glPushMatrix();
+<a name="l00074"></a>00074             glTranslated(i % SCREEN_WIDTH,i / SCREEN_WIDTH, 0);
+<a name="l00075"></a>00075             glutSolidCube(1);
+<a name="l00076"></a>00076             glPopMatrix();
+<a name="l00077"></a>00077         }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079     glutSwapBuffers();
+<a name="l00080"></a>00080     glutTimerFunc(<a class="code" href="_display_8c.html#a0ee93fbb701859705213344c5514f6a9">DISPLAY_IDLE_TIME</a>, <a class="code" href="_display_8c.html#a112be8a62cc5d91a6d5252686929b70f">render</a>, frame + 1);
+<a name="l00081"></a>00081 }
+<a name="l00082"></a>00082 
+<a name="l00083"></a><a class="code" href="_display_8h.html#a5de872d4f34395091e277029250eb0b4">00083</a> <span class="keywordtype">int</span> <a class="code" href="_display_8c.html#a5de872d4f34395091e277029250eb0b4" title="Clear screen.">clearScreen</a>() {
+<a name="l00084"></a>00084     <span class="keywordflow">return</span> (bitmap == memset(bitmap, 0, <a class="code" href="_display_8c.html#a2cd109632a6dcccaa80b43561b1ab700">SCREEN_WIDTH</a> * <a class="code" href="_display_8c.html#a25f7ae536603397e929ff4941e253200">SCREEN_HEIGTH</a>)) ? 0 : 1;
+<a name="l00085"></a>00085 }
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -138,7 +140,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Dec 23 2010 20:52:56 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 24 2010 15:56:32 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

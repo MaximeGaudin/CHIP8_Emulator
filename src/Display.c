@@ -44,7 +44,7 @@
 static unsigned char* bitmap;
 
 int setupDisplay(int argc, char** argv) {
-    bitmap = (bool*)calloc(SCREEN_WIDTH * SCREEN_HEIGTH, sizeof(bool));
+    bitmap = (unsigned char*)calloc(SCREEN_WIDTH * SCREEN_HEIGTH, sizeof(unsigned char));
     if(bitmap == NULL) return 1;
 
     glutInit(&argc, argv);
@@ -60,13 +60,15 @@ int cleanupDisplay() {
     return 0;
 }
 
-void render(int) {
+void render(int frame) {
+	int i = 0;
+
     addEntry(LOW_LEVEL_OPERATION, "Dessin !");
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    for(int i=0; i<SCREEN_HEIGTH * SCREEN_WIDTH; ++i)
+    for(i=0; i<SCREEN_HEIGTH * SCREEN_WIDTH; ++i)
         if(bitmap[i]) {
             glPushMatrix();
             glTranslated(i % SCREEN_WIDTH,i / SCREEN_WIDTH, 0);
@@ -75,9 +77,9 @@ void render(int) {
         }
 
     glutSwapBuffers();
-    glutTimerFunc(DISPLAY_IDLE_TIME, render, 0);
+    glutTimerFunc(DISPLAY_IDLE_TIME, render, frame + 1);
 }
 
 int clearScreen() {
-    return (bitmap == memset(bitmap, false, SCREEN_WIDTH * SCREEN_HEIGTH)) ? 0 : 1;
+    return (bitmap == memset(bitmap, 0, SCREEN_WIDTH * SCREEN_HEIGTH)) ? 0 : 1;
 }
