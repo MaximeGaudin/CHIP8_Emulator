@@ -277,6 +277,16 @@ __inline__ static void opADD2(unsigned char X, unsigned char Y) {
 }
 
 /**
+  * Add operator : Add value V[X] to register I
+  * Mnemonic = ADDI
+  * opCode = FX1E
+  * param [in] X Index of the source register
+  */
+__inline__ static void opADDI(unsigned char X) {
+	I += registers[X];
+}
+
+/**
   * Sub operator : Put value V[X] - V[Y] into register X.
   * If V[X] > V[Y], V[0xF] = 1, v[0xF] = 0 Otherwise.
   * Mnemonic = SUB
@@ -380,26 +390,59 @@ __inline__ static void opDRW(unsigned char X, unsigned char Y, unsigned char n) 
     /*    drawSprite(registers[X], registers[Y], memory + I, n); */
 }
 
+/**
+  * Sprite locator operation : Set I to the location of the sprite for digit contained in V[X]
+  * Mnemonic : SPR
+  * opCode : FX29
+  */
+__inline__ static void opSPR(unsigned char X) {
+	I = registers[X] * 5; /* Each sprites are 5 bytes long, TODO : Mettre ca dans un define */ 
+}
+
+/**
+  * BCD of V[X] : Store BCD representation in I, I + 1, I + 2
+  * Mnemonic : BCD
+  * opCode : Fx33
+  * param [in] X Index of the source register
+  */
+__inline__ static void opBCD(unsigned char X) {
+	unsigned char BCDRepresentation[3] = { registers[X] / 100, (registers[X] / 10) % 10, registers[X] % 10 };
+	write(I, BCDRepresentation, 3);	
+}
+
+/**
+  * Move range : Store registers V0 thru V[X] in memory starting at location I
+  * Mnemonic : MOVR
+  * opCode : Fx55
+  * param [in] X Index of the last source register
+  */
+__inline__ static void opMOVR(unsigned char X) {
+	write(I, registers, X + 1);	
+}
+
+/**
+  * Move range : Store memory values starting at location I to registers V0 thru V[X]
+  * Mnemonic : REAR
+  * opCode : Fx65
+  * param [in] X Index of the last destination register
+  */
+__inline__ static void opREAR(unsigned char X) {
+	read(I, X + 1, registers);	
+}
+
 void CPUTick(int na) {
-    /* handleOpCode(); */
+    handleOpCode();
     printf("CPU %d\n", na);
     glutTimerFunc(16, CPUTick, 0);
 }
 
 void handleOpCode() {
     unsigned short opCode;
-    unsigned char byte1, byte2;
-
     read(pc, 2, (unsigned char*)(&opCode));
-    byte1 = 0x01 & opCode;
-    byte2 = 0x10 & opCode;
-
-    /*
+    
     if(opCode == 0x00E0) {
         opCLS();
-    } else if(opCode == 0x00EE) {
-        opRET();
-    }
+    } else if(opCode == 0x00EE) opRET();
 
     else if((opCode & 0x1000) == 0x1000) {
         opJP(opCode & 0x0111);
@@ -412,6 +455,5 @@ void handleOpCode() {
     } else if((opCode & 0x1001) == 0x5000) {
         opSE2(opCode & 0x0100, opCode & 0x0010);
     }
-    */
 }
 

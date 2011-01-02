@@ -198,82 +198,95 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00276"></a>00276     registers[X] += registers[Y];
 <a name="l00277"></a>00277 }
 <a name="l00278"></a>00278 
-<a name="l00287"></a>00287 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opSUB(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y) {
-<a name="l00288"></a>00288     registers[0xF] = (registers[X] &gt; registers[Y]) ? 1 : 0;
-<a name="l00289"></a>00289     registers[X] -= registers[Y];
-<a name="l00290"></a>00290 }
-<a name="l00291"></a>00291 
-<a name="l00300"></a>00300 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opSUBN(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y) {
-<a name="l00301"></a>00301     registers[0xF] = (registers[Y] &gt; registers[X]) ? 1 : 0;
-<a name="l00302"></a>00302     registers[X] = registers[Y] - registers[X];
-<a name="l00303"></a>00303 }
-<a name="l00304"></a>00304 
-<a name="l00313"></a>00313 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opSHR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
-<a name="l00314"></a>00314     registers[0xF] = (registers[X] % 2);
-<a name="l00315"></a>00315     registers[X] = registers[X] &gt;&gt; 1;
-<a name="l00316"></a>00316 }
-<a name="l00317"></a>00317 
-<a name="l00326"></a>00326 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opSHL(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
-<a name="l00327"></a>00327     registers[0xF] = (registers[X] &gt;= 128) ? 1 : 0;
-<a name="l00328"></a>00328     registers[X] = registers[X] &lt;&lt; 1;
-<a name="l00329"></a>00329 }
-<a name="l00330"></a>00330 
-<a name="l00338"></a>00338 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opOR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y) {
-<a name="l00339"></a>00339     registers[X] |= registers[Y];
-<a name="l00340"></a>00340 }
-<a name="l00341"></a>00341 
-<a name="l00342"></a>00342 
-<a name="l00350"></a>00350 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opAND(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y) {
-<a name="l00351"></a>00351     registers[X] &amp;= registers[Y];
-<a name="l00352"></a>00352 }
-<a name="l00353"></a>00353 
-<a name="l00361"></a>00361 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opXOR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y) {
-<a name="l00362"></a>00362     registers[X] ^= registers[Y];
-<a name="l00363"></a>00363 }
-<a name="l00364"></a>00364 
-<a name="l00372"></a>00372 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opRND(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> kk) {
-<a name="l00373"></a>00373     registers[X] = (<span class="keywordtype">unsigned</span> char)((rand() % 254) &amp; kk);
-<a name="l00374"></a>00374 }
-<a name="l00375"></a>00375 
-<a name="l00379"></a>00379 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opDRW(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> n) {
-<a name="l00380"></a>00380     <span class="comment">/*    drawSprite(registers[X], registers[Y], memory + I, n); */</span>
-<a name="l00381"></a>00381 }
-<a name="l00382"></a>00382 
-<a name="l00383"></a><a class="code" href="_c_p_u_8c.html#a97a937f41477ecfc75babcea72b7d8de">00383</a> <span class="keywordtype">void</span> <a class="code" href="_c_p_u_8c.html#a97a937f41477ecfc75babcea72b7d8de">CPUTick</a>(<span class="keywordtype">int</span> na) {
-<a name="l00384"></a>00384     <span class="comment">/* handleOpCode(); */</span>
-<a name="l00385"></a>00385     printf(<span class="stringliteral">&quot;CPU %d\n&quot;</span>, na);
-<a name="l00386"></a>00386     glutTimerFunc(16, <a class="code" href="_c_p_u_8c.html#a97a937f41477ecfc75babcea72b7d8de">CPUTick</a>, 0);
-<a name="l00387"></a>00387 }
-<a name="l00388"></a>00388 
-<a name="l00389"></a><a class="code" href="_c_p_u_8c.html#a36ad4c89710572fc26b7d93fa08d89e6">00389</a> <span class="keywordtype">void</span> <a class="code" href="_c_p_u_8c.html#a36ad4c89710572fc26b7d93fa08d89e6">handleOpCode</a>() {
-<a name="l00390"></a>00390     <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> opCode;
-<a name="l00391"></a>00391     <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> byte1, byte2;
+<a name="l00285"></a>00285 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opADDI(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
+<a name="l00286"></a>00286         I += registers[X];
+<a name="l00287"></a>00287 }
+<a name="l00288"></a>00288 
+<a name="l00297"></a>00297 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opSUB(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y) {
+<a name="l00298"></a>00298     registers[0xF] = (registers[X] &gt; registers[Y]) ? 1 : 0;
+<a name="l00299"></a>00299     registers[X] -= registers[Y];
+<a name="l00300"></a>00300 }
+<a name="l00301"></a>00301 
+<a name="l00310"></a>00310 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opSUBN(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y) {
+<a name="l00311"></a>00311     registers[0xF] = (registers[Y] &gt; registers[X]) ? 1 : 0;
+<a name="l00312"></a>00312     registers[X] = registers[Y] - registers[X];
+<a name="l00313"></a>00313 }
+<a name="l00314"></a>00314 
+<a name="l00323"></a>00323 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opSHR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
+<a name="l00324"></a>00324     registers[0xF] = (registers[X] % 2);
+<a name="l00325"></a>00325     registers[X] = registers[X] &gt;&gt; 1;
+<a name="l00326"></a>00326 }
+<a name="l00327"></a>00327 
+<a name="l00336"></a>00336 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opSHL(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
+<a name="l00337"></a>00337     registers[0xF] = (registers[X] &gt;= 128) ? 1 : 0;
+<a name="l00338"></a>00338     registers[X] = registers[X] &lt;&lt; 1;
+<a name="l00339"></a>00339 }
+<a name="l00340"></a>00340 
+<a name="l00348"></a>00348 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opOR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y) {
+<a name="l00349"></a>00349     registers[X] |= registers[Y];
+<a name="l00350"></a>00350 }
+<a name="l00351"></a>00351 
+<a name="l00352"></a>00352 
+<a name="l00360"></a>00360 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opAND(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y) {
+<a name="l00361"></a>00361     registers[X] &amp;= registers[Y];
+<a name="l00362"></a>00362 }
+<a name="l00363"></a>00363 
+<a name="l00371"></a>00371 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opXOR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y) {
+<a name="l00372"></a>00372     registers[X] ^= registers[Y];
+<a name="l00373"></a>00373 }
+<a name="l00374"></a>00374 
+<a name="l00382"></a>00382 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opRND(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> kk) {
+<a name="l00383"></a>00383     registers[X] = (<span class="keywordtype">unsigned</span> char)((rand() % 254) &amp; kk);
+<a name="l00384"></a>00384 }
+<a name="l00385"></a>00385 
+<a name="l00389"></a>00389 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opDRW(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> n) {
+<a name="l00390"></a>00390     <span class="comment">/*    drawSprite(registers[X], registers[Y], memory + I, n); */</span>
+<a name="l00391"></a>00391 }
 <a name="l00392"></a>00392 
-<a name="l00393"></a>00393     <a class="code" href="_memory_8c.html#ad337d6a60f8276b9e887b4dd7b607080" title="Read [len] bytes of data from address [addr] to buffer.">read</a>(pc, 2, (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*)(&amp;opCode));
-<a name="l00394"></a>00394     byte1 = 0x01 &amp; opCode;
-<a name="l00395"></a>00395     byte2 = 0x10 &amp; opCode;
-<a name="l00396"></a>00396 
-<a name="l00397"></a>00397     <span class="comment">/*</span>
-<a name="l00398"></a>00398 <span class="comment">    if(opCode == 0x00E0) {</span>
-<a name="l00399"></a>00399 <span class="comment">        opCLS();</span>
-<a name="l00400"></a>00400 <span class="comment">    } else if(opCode == 0x00EE) {</span>
-<a name="l00401"></a>00401 <span class="comment">        opRET();</span>
-<a name="l00402"></a>00402 <span class="comment">    }</span>
-<a name="l00403"></a>00403 <span class="comment"></span>
-<a name="l00404"></a>00404 <span class="comment">    else if((opCode &amp; 0x1000) == 0x1000) {</span>
-<a name="l00405"></a>00405 <span class="comment">        opJP(opCode &amp; 0x0111);</span>
-<a name="l00406"></a>00406 <span class="comment">    } else if((opCode &amp; 0x1000) == 0x2000) {</span>
-<a name="l00407"></a>00407 <span class="comment">        opCALL(opCode  &amp; 0x0111);</span>
-<a name="l00408"></a>00408 <span class="comment">    } else if((opCode &amp; 0x1000) == 0x3000) {</span>
-<a name="l00409"></a>00409 <span class="comment">        opSE(opCode &amp; 0x0100, opCode &amp; 0x0011);</span>
-<a name="l00410"></a>00410 <span class="comment">    } else if((opCode &amp; 0x1000) == 0x4000) {</span>
-<a name="l00411"></a>00411 <span class="comment">        opSNE(opCode &amp; 0x0100, opCode &amp; 0x0011);</span>
-<a name="l00412"></a>00412 <span class="comment">    } else if((opCode &amp; 0x1001) == 0x5000) {</span>
-<a name="l00413"></a>00413 <span class="comment">        opSE2(opCode &amp; 0x0100, opCode &amp; 0x0010);</span>
-<a name="l00414"></a>00414 <span class="comment">    }</span>
-<a name="l00415"></a>00415 <span class="comment">    */</span>
-<a name="l00416"></a>00416 }
-<a name="l00417"></a>00417 
+<a name="l00398"></a>00398 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opSPR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
+<a name="l00399"></a>00399         I = registers[X] * 5; <span class="comment">/* Each sprites are 5 bytes long, TODO : Mettre ca dans un define */</span> 
+<a name="l00400"></a>00400 }
+<a name="l00401"></a>00401 
+<a name="l00408"></a>00408 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opBCD(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
+<a name="l00409"></a>00409         <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> BCDRepresentation[3] = { registers[X] / 100, (registers[X] / 10) % 10, registers[X] % 10 };
+<a name="l00410"></a>00410         <a class="code" href="_memory_8c.html#a6602b590d8f51e6235b29386e995a030" title="write [len] bytes from [data] into memory at adress [addr]">write</a>(I, BCDRepresentation, 3); 
+<a name="l00411"></a>00411 }
+<a name="l00412"></a>00412 
+<a name="l00419"></a>00419 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opMOVR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
+<a name="l00420"></a>00420         <a class="code" href="_memory_8c.html#a6602b590d8f51e6235b29386e995a030" title="write [len] bytes from [data] into memory at adress [addr]">write</a>(I, registers, X + 1);     
+<a name="l00421"></a>00421 }
+<a name="l00422"></a>00422 
+<a name="l00429"></a>00429 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opREAR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
+<a name="l00430"></a>00430         <a class="code" href="_memory_8c.html#ad337d6a60f8276b9e887b4dd7b607080" title="Read [len] bytes of data from address [addr] to buffer.">read</a>(I, X + 1, registers);      
+<a name="l00431"></a>00431 }
+<a name="l00432"></a>00432 
+<a name="l00433"></a><a class="code" href="_c_p_u_8c.html#a97a937f41477ecfc75babcea72b7d8de">00433</a> <span class="keywordtype">void</span> <a class="code" href="_c_p_u_8c.html#a97a937f41477ecfc75babcea72b7d8de">CPUTick</a>(<span class="keywordtype">int</span> na) {
+<a name="l00434"></a>00434     <a class="code" href="_c_p_u_8c.html#a36ad4c89710572fc26b7d93fa08d89e6">handleOpCode</a>();
+<a name="l00435"></a>00435     printf(<span class="stringliteral">&quot;CPU %d\n&quot;</span>, na);
+<a name="l00436"></a>00436     glutTimerFunc(16, <a class="code" href="_c_p_u_8c.html#a97a937f41477ecfc75babcea72b7d8de">CPUTick</a>, 0);
+<a name="l00437"></a>00437 }
+<a name="l00438"></a>00438 
+<a name="l00439"></a><a class="code" href="_c_p_u_8c.html#a36ad4c89710572fc26b7d93fa08d89e6">00439</a> <span class="keywordtype">void</span> <a class="code" href="_c_p_u_8c.html#a36ad4c89710572fc26b7d93fa08d89e6">handleOpCode</a>() {
+<a name="l00440"></a>00440     <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> opCode;
+<a name="l00441"></a>00441     <a class="code" href="_memory_8c.html#ad337d6a60f8276b9e887b4dd7b607080" title="Read [len] bytes of data from address [addr] to buffer.">read</a>(pc, 2, (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*)(&amp;opCode));
+<a name="l00442"></a>00442     
+<a name="l00443"></a>00443     <span class="keywordflow">if</span>(opCode == 0x00E0) {
+<a name="l00444"></a>00444         opCLS();
+<a name="l00445"></a>00445     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(opCode == 0x00EE) opRET();
+<a name="l00446"></a>00446 
+<a name="l00447"></a>00447     <span class="keywordflow">else</span> <span class="keywordflow">if</span>((opCode &amp; 0x1000) == 0x1000) {
+<a name="l00448"></a>00448         opJP(opCode &amp; 0x0111);
+<a name="l00449"></a>00449     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>((opCode &amp; 0x1000) == 0x2000) {
+<a name="l00450"></a>00450         opCALL(opCode  &amp; 0x0111);
+<a name="l00451"></a>00451     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>((opCode &amp; 0x1000) == 0x3000) {
+<a name="l00452"></a>00452         opSE(opCode &amp; 0x0100, opCode &amp; 0x0011);
+<a name="l00453"></a>00453     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>((opCode &amp; 0x1000) == 0x4000) {
+<a name="l00454"></a>00454         opSNE(opCode &amp; 0x0100, opCode &amp; 0x0011);
+<a name="l00455"></a>00455     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>((opCode &amp; 0x1001) == 0x5000) {
+<a name="l00456"></a>00456         opSE2(opCode &amp; 0x0100, opCode &amp; 0x0010);
+<a name="l00457"></a>00457     }
+<a name="l00458"></a>00458 }
+<a name="l00459"></a>00459 
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -290,7 +303,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 28 2010 17:06:40 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 2 2011 17:59:21 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>
