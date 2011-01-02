@@ -10,6 +10,7 @@
 #include "Memory.h"
 #include "CartridgeReader.h"
 #include "Display.h"
+#include "CPU.h"
 
 void printUsage() {
     printf("C8E - Chip8 Emulator ***********\n");
@@ -25,19 +26,22 @@ int main(int argc, char** argv) {
     int len;
     if(argc != 2) printUsage();
 
+    /* Initialization========================================= */
     setupLogs(1, LOW_LEVEL_OPERATION, DEFAULT_OUTPUT_FILENAME);
     setupMemory();
     setupDisplay(argc, argv);
+    setupCPU();
+    /* ======================================================= */
 
     len = readCartridge(argv[1], programBuffer);
     write(DATA_SPACE_START, programBuffer, len);
-
-    /* CPUTick(0); */
-
     glutMainLoop();
 
+    /* Cleanup =============================================== */
+    cleanupCPU();
     cleanupDisplay();
     cleanupMemory();
     closeLogs();
+    /* ======================================================= */
     return 0;
 }

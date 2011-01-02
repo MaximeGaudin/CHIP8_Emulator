@@ -27,11 +27,26 @@
 #ifndef DISPLAY_HEADER
 #define DISPLAY_HEADER
 
+/* @brief Describe the screen width */
+#define SCREEN_WIDTH 64
+
+/* @brief Describe the screen height */
+#define SCREEN_HEIGTH 32
+
+/* @brief Describe the screen */
+#define SCREEN_RATIO (SCREEN_WIDTH / SCREEN_HEIGTH)
+
+/* @brief Describ the theorical time between 2 frames */
+#define DISPLAY_IDLE_TIME 16
+
 /**
   * @brief Setup all display related memory buffer and glut framework.
   */
 int setupDisplay(int argc, char** argv);
 
+/**
+  * @brief Cleanup all display related variable and memory segments
+  */
 int cleanupDisplay();
 
 /**

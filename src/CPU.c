@@ -25,33 +25,45 @@
  */
 
 #include "CPU.h"
-#include "Logs.h"
 
+#ifdef WINDOWS
+#include <GL/glut.h>
+#else
+#include <GLUT/glut.h>
+#endif
+
+#include <stdlib.h>
+#include <time.h>
+
+#include "Logs.h"
 #include "Display.h"
 #include "Memory.h"
 
-/// @brief Address register
+/** @brief Address register **/
 static unsigned short I;
 
-/// @brief Delay register - Decremented every 17 ms (60Hz)
+/** @brief Delay register - Decremented every 17 ms (60Hz) **/
 static unsigned char delay;
 
-/// @brief Sound register - Decremented every 17 ms (60Hz)
+/** @brief Sound register - Decremented every 17 ms (60Hz) **/
 static unsigned char sound;
 
-/// @brief General purpose registers
+/** @brief General purpose registers **/
 static unsigned char* registers;
 
-/// @brief The program counter register : Specifies the currently executing address
+/** @brief The program counter register : Specifies the currently executing address **/
 static unsigned short pc;
 
-/// @brief The stack pointer : Point the upmost level of stack, i.e. 1 level more than the last stacked address.
+/** @brief The stack pointer : Point the upmost level of stack, i.e. 1 level more than the last stacked address. **/
 static unsigned char sp;
 
-/// @brief Contains return address of subroutines
+/** @brief Contains return address of subroutines **/
 static unsigned short* stack;
 
+void CPUTick(int);
+
 int setupCPU() {
+    time_t seconds;
     addEntry(LOW_LEVEL_OPERATION, "CPU initialization ...");
 
     I = delay = sound = sp = 0;
@@ -60,10 +72,15 @@ int setupCPU() {
     registers = (unsigned char*)calloc(MAX_REGISTERS, sizeof(unsigned char));
     if(registers == NULL) return 1;
 
-    stack = (unsigned char*)calloc(MAX_STACK_SIZE, sizeof(unsigned char));
+    stack = (unsigned short*)calloc(MAX_STACK_SIZE, sizeof(unsigned short));
     if(stack == NULL) return 1;
 
     addEntry(LOW_LEVEL_OPERATION, "CPU initialized.");
+
+    time(&seconds);
+    srand((unsigned int) seconds);
+
+    glutTimerFunc(16, CPUTick, 0);
 
     return 0;
 }
@@ -79,7 +96,7 @@ void cleanupCPU() {
   * @brief Clear screen, i.e. put every pixel to low state (black)
   *
   */
-inline static void opCLS() {
+__inline__ static void opCLS() {
     clearScreen();
 }
 
@@ -89,7 +106,7 @@ inline static void opCLS() {
   * Mnemonic = RET
   * Opcode : 0x00EE
   */
-inline static void opRET() {
+__inline__ static void opRET() {
     addEntry(DISASSEMBLY, "RET");
     pc = stack[--sp];
 }
@@ -98,11 +115,11 @@ inline static void opRET() {
   * @brief Jump unconditionnaly to [addr],
   * i.e. set pc to addr - 2 (because it will be incremented before the next CPU cycle )
   * Mnemonic = JP
-  * opCode : 0x1NNN
+  * opCode : 0x1nnn
   * param [in] addr Address of the next intruction to execute.
   */
-inline static void opJP(unsigned short addr) {
-    pc = addr - 2;
+__inline__ static void opJP(unsigned short nnn) {
+    pc = nnn - 2;
 }
 
 /**
@@ -112,8 +129,8 @@ inline static void opJP(unsigned short addr) {
   * opCode : 0xBnnn
   * param [in] nnn Address to jump to minus value of V[0]
   */
-inline static void opJP(unsigned short nnn) {
-    pc = nnn + v[0] - 2;
+__inline__ static void opJP2(unsigned short nnn) {
+    pc = nnn + registers[0] - 2;
 }
 
 /**
@@ -123,9 +140,9 @@ inline static void opJP(unsigned short nnn) {
   * opCode = 0x2NNN
   * param [in] address Address of the subroutine to call.
   */
-inline static void opCALL(unsigned short addr) {
+__inline__ static void opCALL(unsigned short nnn) {
     stack[sp++] = pc;
-    pc = addr - 2;
+    pc = nnn - 2;
 }
 
 /**
@@ -135,7 +152,7 @@ inline static void opCALL(unsigned short addr) {
   * param [in] X Index of the register to compare
   * param [in] kk Value to compare with
 */
-inline static void opSE(unsigned char X, unsigned char kk) {
+__inline__ static void opSE(unsigned char X, unsigned char kk) {
     if(registers[X] == kk) pc += 2;
 }
 
@@ -146,7 +163,7 @@ inline static void opSE(unsigned char X, unsigned char kk) {
   * param [in] X Index of the first register to compare
   * param [in] Y Index of the second register to compare
   */
-inline static void opSE2(unsigned char X, unsigned char Y) {
+__inline__ static void opSE2(unsigned char X, unsigned char Y) {
     if(registers[X] == registers[Y]) pc += 2;
 }
 
@@ -157,8 +174,8 @@ inline static void opSE2(unsigned char X, unsigned char Y) {
   * param [in] X Index of the register to compare
   * param [in] kk value Value to compare with
 */
-inline static void opSNE(unsigned char X, unsigned char kk) {
-    if(registers[X] =! kk) pc += 2;
+__inline__ static void opSNE(unsigned char X, unsigned char kk) {
+    if(registers[X] != kk) pc += 2;
 }
 /**
   * Skip if not equal : Skip next instruction if V[X] != V[Y]
@@ -167,7 +184,7 @@ inline static void opSNE(unsigned char X, unsigned char kk) {
   * param [in] X Index of the left-hand register
   * param [in] Y Index of the right-hand register
   */
-inline static void opSNE2(unsigned char X, unsigned char Y) {
+__inline__ static void opSNE2(unsigned char X, unsigned char Y) {
     if(registers[X] != registers[Y]) pc += 2;
 }
 
@@ -179,7 +196,7 @@ inline static void opSNE2(unsigned char X, unsigned char Y) {
   * param [in] X Index of the storage register
   * param [in] kk Value to store
   */
-inline static void opMOV(unsigned char X, unsigned char kk) {
+__inline__ static void opMOV(unsigned char X, unsigned char kk) {
     registers[X] = kk;
 }
 
@@ -190,7 +207,7 @@ inline static void opMOV(unsigned char X, unsigned char kk) {
   * param [in] X Index of the destination register
   * param [in] Y Index of the source register
   */
-inline static void opMOV2(unsigned char X, unsigned char Y) {
+__inline__ static void opMOV2(unsigned char X, unsigned char Y) {
     registers[X] = registers[Y];
 }
 
@@ -200,7 +217,7 @@ inline static void opMOV2(unsigned char X, unsigned char Y) {
   * opCode = 0xAnnn
   * param [in] nnn Value to store
   */
-inline static void opMOVI(unsigned short nnn) {
+__inline__ static void opMOVI(unsigned short nnn) {
     I = nnn;
 }
 
@@ -210,8 +227,8 @@ inline static void opMOVI(unsigned short nnn) {
   * opCode = 0xFX07
   * param [in] X Index of the destination register.
   */
-inline static void opMOVFD(unsigned short X) {
-    V[X] = delay;
+__inline__ static void opMOVFD(unsigned short X) {
+    registers[X] = delay;
 }
 
 /**
@@ -220,8 +237,8 @@ inline static void opMOVFD(unsigned short X) {
   * opCode = 0xFX18
   * param [in] X Index of the source register.
   */
-inline static void opMOVD(unsigned short X) {
-    delay = V[X];
+__inline__ static void opMOVD(unsigned short X) {
+    delay = registers[X];
 }
 
 /**
@@ -230,8 +247,8 @@ inline static void opMOVD(unsigned short X) {
   * opCode = 0xFX18
   * param [in] X Index of the source register.
   */
-inline static void opMOVS(unsigned short X) {
-    sound = V[X];
+__inline__ static void opMOVS(unsigned short X) {
+    sound = registers[X];
 }
 
 /**
@@ -241,7 +258,7 @@ inline static void opMOVS(unsigned short X) {
   * param [in] X Index of the storage register
   * param [in] kk Value to add
   */
-inline static void opADD(unsigned char X, unsigned char kk) {
+__inline__ static void opADD(unsigned char X, unsigned char kk) {
     registers[X] += kk;
 }
 
@@ -254,9 +271,19 @@ inline static void opADD(unsigned char X, unsigned char kk) {
   * param [in] X Index of the destination register
   * param [in] Y Index of the source register
   */
-inline static void opADD2(unsigned char X, unsigned char Y) {
+__inline__ static void opADD2(unsigned char X, unsigned char Y) {
     registers[0xF] = ((int)registers[X] + (int)registers[Y] > 255) ? 1 : 0;
     registers[X] += registers[Y];
+}
+
+/**
+  * Add operator : Add value V[X] to register I
+  * Mnemonic = ADDI
+  * opCode = FX1E
+  * param [in] X Index of the source register
+  */
+__inline__ static void opADDI(unsigned char X) {
+    I += registers[X];
 }
 
 /**
@@ -267,7 +294,7 @@ inline static void opADD2(unsigned char X, unsigned char Y) {
   * param [in] X Index of the destination register
   * param [in] Y Index of the source register
   */
-inline static void opSUB(unsigned char X, unsigned char Y) {
+__inline__ static void opSUB(unsigned char X, unsigned char Y) {
     registers[0xF] = (registers[X] > registers[Y]) ? 1 : 0;
     registers[X] -= registers[Y];
 }
@@ -280,7 +307,7 @@ inline static void opSUB(unsigned char X, unsigned char Y) {
   * param [in] X Index of the destination register
   * param [in] Y Index of the source register
   */
-inline static void opSUBN(unsigned char X, unsigned char Y) {
+__inline__ static void opSUBN(unsigned char X, unsigned char Y) {
     registers[0xF] = (registers[Y] > registers[X]) ? 1 : 0;
     registers[X] = registers[Y] - registers[X];
 }
@@ -293,9 +320,9 @@ inline static void opSUBN(unsigned char X, unsigned char Y) {
   * opCode = 0x8XY6
   * param [in] X Index of the destination register
   */
-inline static void opSHR(unsigned char X) {
+__inline__ static void opSHR(unsigned char X) {
     registers[0xF] = (registers[X] % 2);
-    registers[X] >> 1;
+    registers[X] = registers[X] >> 1;
 }
 
 /**
@@ -306,9 +333,9 @@ inline static void opSHR(unsigned char X) {
   * opCode = 0x8XYE
   * param [in] X Index of the destination register
   */
-inline static void opSHL(unsigned char X) {
+__inline__ static void opSHL(unsigned char X) {
     registers[0xF] = (registers[X] >= 128) ? 1 : 0;
-    registers[X] << 1;
+    registers[X] = registers[X] << 1;
 }
 
 /**
@@ -318,7 +345,7 @@ inline static void opSHL(unsigned char X) {
   * param [in] X Index of the destination register
   * param [in] Y Index of the source register
   */
-inline static void opOR(unsigned char X, unsigned char Y) {
+__inline__ static void opOR(unsigned char X, unsigned char Y) {
     registers[X] |= registers[Y];
 }
 
@@ -330,7 +357,7 @@ inline static void opOR(unsigned char X, unsigned char Y) {
   * param [in] X Index of the destination register
   * param [in] Y Index of the source register
   */
-inline static void opAND(unsigned char X, unsigned char Y) {
+__inline__ static void opAND(unsigned char X, unsigned char Y) {
     registers[X] &= registers[Y];
 }
 
@@ -341,40 +368,92 @@ inline static void opAND(unsigned char X, unsigned char Y) {
   * param [in] X Index of the destination register
   * param [in] Y Index of the source register
   */
-inline static void opXOR(unsigned char X, unsigned char Y) {
+__inline__ static void opXOR(unsigned char X, unsigned char Y) {
     registers[X] ^= registers[Y];
 }
 
-void tick() {
-    // WHILE SMTH
+/**
+  * Generate a rabdom byte : Set V[X] = RND & [kk]
+  * Mnemonic = RND
+  * opCode = 0xCXkk
+  * param [in] X Index of the destination register
+  * param [in] kk Byte with wich generated number will be anded.
+  */
+__inline__ static void opRND(unsigned char X, unsigned short kk) {
+    registers[X] = (unsigned char)((rand() % 254) & kk);
+}
+
+/**
+  *
+  */
+__inline__ static void opDRW(unsigned char X, unsigned char Y, unsigned char n) {
+    /*    drawSprite(registers[X], registers[Y], memory + I, n); */
+}
+
+/**
+  * Sprite locator operation : Set I to the location of the sprite for digit contained in V[X]
+  * Mnemonic : SPR
+  * opCode : FX29
+  */
+__inline__ static void opSPR(unsigned char X) {
+    I = registers[X] * 5; /* Each sprites are 5 bytes long, TODO : Mettre ca dans un define */
+}
+
+/**
+  * BCD of V[X] : Store BCD representation in I, I + 1, I + 2
+  * Mnemonic : BCD
+  * opCode : Fx33
+  * param [in] X Index of the source register
+  */
+__inline__ static void opBCD(unsigned char X) {
+    unsigned char BCDRepresentation[3] = { registers[X] / 100, (registers[X] / 10) % 10, registers[X] % 10 };
+    write(I, BCDRepresentation, 3);
+}
+
+/**
+  * Move range : Store registers V0 thru V[X] in memory starting at location I
+  * Mnemonic : MOVR
+  * opCode : Fx55
+  * param [in] X Index of the last source register
+  */
+__inline__ static void opMOVR(unsigned char X) {
+    write(I, registers, X + 1);
+}
+
+/**
+  * Move range : Store memory values starting at location I to registers V0 thru V[X]
+  * Mnemonic : REAR
+  * opCode : Fx65
+  * param [in] X Index of the last destination register
+  */
+__inline__ static void opREAR(unsigned char X) {
+    read(I, X + 1, registers);
+}
+
+void CPUTick(int na) {
     handleOpCode();
+    printf("CPU %d\n", na);
+    glutTimerFunc(16, CPUTick, 0);
 }
 
 void handleOpCode() {
     unsigned short opCode;
-    read(pc, 2, (char*)(&opCode));
-    unsigned char byte1, byte2;
-    byte1 = 0x01 & opCode;
-    byte2 = 0x10 & opCode;
+    read(pc, 2, (unsigned char*)(&opCode));
 
     if(opCode == 0x00E0) {
         opCLS();
-    } else if(opCode == 0x00EE) {
-        opRET();
-    }
+    } else if(opCode == 0x00EE) opRET();
 
-    else if(opCode & 0x1000 == 0x1000) {
+    else if((opCode & 0x1000) == 0x1000) {
         opJP(opCode & 0x0111);
-    } else if(opCode & 0x1000 == 0x2000) {
+    } else if((opCode & 0x1000) == 0x2000) {
         opCALL(opCode  & 0x0111);
-    } else if(opCode & 0x1000 == 0x3000) {
+    } else if((opCode & 0x1000) == 0x3000) {
         opSE(opCode & 0x0100, opCode & 0x0011);
-    } else if(opCode & 0x1000 == 0x4000) {
+    } else if((opCode & 0x1000) == 0x4000) {
         opSNE(opCode & 0x0100, opCode & 0x0011);
-    } else if(opCode & 0x1001 == 0x5000) {
+    } else if((opCode & 0x1001) == 0x5000) {
         opSE2(opCode & 0x0100, opCode & 0x0010);
     }
-
-
 }
 

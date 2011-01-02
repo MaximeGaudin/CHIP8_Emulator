@@ -27,13 +27,11 @@
 #ifndef CPU_HEADER
 #define CPU_HEADER
 
-/// @brief Define the maximum stack size, i.e. the maximum amount of subroutine calls.
+/** @brief Define the maximum stack size, i.e. the maximum amount of subroutine calls. **/
 #define MAX_STACK_SIZE 0xF
 
 int setupCPU();
 
 void cleanupCPU();
 
-void tick();
-
-#endif // CPU_HEADER
+#endif /* CPU_HEADER */
