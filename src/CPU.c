@@ -283,7 +283,7 @@ __inline__ static void opADD2(unsigned char X, unsigned char Y) {
   * param [in] X Index of the source register
   */
 __inline__ static void opADDI(unsigned char X) {
-	I += registers[X];
+    I += registers[X];
 }
 
 /**
@@ -396,7 +396,7 @@ __inline__ static void opDRW(unsigned char X, unsigned char Y, unsigned char n) 
   * opCode : FX29
   */
 __inline__ static void opSPR(unsigned char X) {
-	I = registers[X] * 5; /* Each sprites are 5 bytes long, TODO : Mettre ca dans un define */ 
+    I = registers[X] * 5; /* Each sprites are 5 bytes long, TODO : Mettre ca dans un define */
 }
 
 /**
@@ -406,8 +406,8 @@ __inline__ static void opSPR(unsigned char X) {
   * param [in] X Index of the source register
   */
 __inline__ static void opBCD(unsigned char X) {
-	unsigned char BCDRepresentation[3] = { registers[X] / 100, (registers[X] / 10) % 10, registers[X] % 10 };
-	write(I, BCDRepresentation, 3);	
+    unsigned char BCDRepresentation[3] = { registers[X] / 100, (registers[X] / 10) % 10, registers[X] % 10 };
+    write(I, BCDRepresentation, 3);
 }
 
 /**
@@ -417,7 +417,7 @@ __inline__ static void opBCD(unsigned char X) {
   * param [in] X Index of the last source register
   */
 __inline__ static void opMOVR(unsigned char X) {
-	write(I, registers, X + 1);	
+    write(I, registers, X + 1);
 }
 
 /**
@@ -427,7 +427,7 @@ __inline__ static void opMOVR(unsigned char X) {
   * param [in] X Index of the last destination register
   */
 __inline__ static void opREAR(unsigned char X) {
-	read(I, X + 1, registers);	
+    read(I, X + 1, registers);
 }
 
 void CPUTick(int na) {
@@ -439,7 +439,7 @@ void CPUTick(int na) {
 void handleOpCode() {
     unsigned short opCode;
     read(pc, 2, (unsigned char*)(&opCode));
-    
+
     if(opCode == 0x00E0) {
         opCLS();
     } else if(opCode == 0x00EE) opRET();

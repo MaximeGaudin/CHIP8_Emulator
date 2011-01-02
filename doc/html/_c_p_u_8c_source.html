@@ -199,7 +199,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00277"></a>00277 }
 <a name="l00278"></a>00278 
 <a name="l00285"></a>00285 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opADDI(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
-<a name="l00286"></a>00286         I += registers[X];
+<a name="l00286"></a>00286     I += registers[X];
 <a name="l00287"></a>00287 }
 <a name="l00288"></a>00288 
 <a name="l00297"></a>00297 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opSUB(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y) {
@@ -244,20 +244,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00391"></a>00391 }
 <a name="l00392"></a>00392 
 <a name="l00398"></a>00398 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opSPR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
-<a name="l00399"></a>00399         I = registers[X] * 5; <span class="comment">/* Each sprites are 5 bytes long, TODO : Mettre ca dans un define */</span> 
+<a name="l00399"></a>00399     I = registers[X] * 5; <span class="comment">/* Each sprites are 5 bytes long, TODO : Mettre ca dans un define */</span>
 <a name="l00400"></a>00400 }
 <a name="l00401"></a>00401 
 <a name="l00408"></a>00408 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opBCD(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
-<a name="l00409"></a>00409         <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> BCDRepresentation[3] = { registers[X] / 100, (registers[X] / 10) % 10, registers[X] % 10 };
-<a name="l00410"></a>00410         <a class="code" href="_memory_8c.html#a6602b590d8f51e6235b29386e995a030" title="write [len] bytes from [data] into memory at adress [addr]">write</a>(I, BCDRepresentation, 3); 
+<a name="l00409"></a>00409     <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> BCDRepresentation[3] = { registers[X] / 100, (registers[X] / 10) % 10, registers[X] % 10 };
+<a name="l00410"></a>00410     <a class="code" href="_memory_8c.html#a6602b590d8f51e6235b29386e995a030" title="write [len] bytes from [data] into memory at adress [addr]">write</a>(I, BCDRepresentation, 3);
 <a name="l00411"></a>00411 }
 <a name="l00412"></a>00412 
 <a name="l00419"></a>00419 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opMOVR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
-<a name="l00420"></a>00420         <a class="code" href="_memory_8c.html#a6602b590d8f51e6235b29386e995a030" title="write [len] bytes from [data] into memory at adress [addr]">write</a>(I, registers, X + 1);     
+<a name="l00420"></a>00420     <a class="code" href="_memory_8c.html#a6602b590d8f51e6235b29386e995a030" title="write [len] bytes from [data] into memory at adress [addr]">write</a>(I, registers, X + 1);
 <a name="l00421"></a>00421 }
 <a name="l00422"></a>00422 
 <a name="l00429"></a>00429 __inline__ <span class="keyword">static</span> <span class="keywordtype">void</span> opREAR(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X) {
-<a name="l00430"></a>00430         <a class="code" href="_memory_8c.html#ad337d6a60f8276b9e887b4dd7b607080" title="Read [len] bytes of data from address [addr] to buffer.">read</a>(I, X + 1, registers);      
+<a name="l00430"></a>00430     <a class="code" href="_memory_8c.html#ad337d6a60f8276b9e887b4dd7b607080" title="Read [len] bytes of data from address [addr] to buffer.">read</a>(I, X + 1, registers);
 <a name="l00431"></a>00431 }
 <a name="l00432"></a>00432 
 <a name="l00433"></a><a class="code" href="_c_p_u_8c.html#a97a937f41477ecfc75babcea72b7d8de">00433</a> <span class="keywordtype">void</span> <a class="code" href="_c_p_u_8c.html#a97a937f41477ecfc75babcea72b7d8de">CPUTick</a>(<span class="keywordtype">int</span> na) {
@@ -269,7 +269,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00439"></a><a class="code" href="_c_p_u_8c.html#a36ad4c89710572fc26b7d93fa08d89e6">00439</a> <span class="keywordtype">void</span> <a class="code" href="_c_p_u_8c.html#a36ad4c89710572fc26b7d93fa08d89e6">handleOpCode</a>() {
 <a name="l00440"></a>00440     <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> opCode;
 <a name="l00441"></a>00441     <a class="code" href="_memory_8c.html#ad337d6a60f8276b9e887b4dd7b607080" title="Read [len] bytes of data from address [addr] to buffer.">read</a>(pc, 2, (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*)(&amp;opCode));
-<a name="l00442"></a>00442     
+<a name="l00442"></a>00442 
 <a name="l00443"></a>00443     <span class="keywordflow">if</span>(opCode == 0x00E0) {
 <a name="l00444"></a>00444         opCLS();
 <a name="l00445"></a>00445     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(opCode == 0x00EE) opRET();
@@ -303,7 +303,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 2 2011 17:59:21 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 2 2011 17:59:40 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>
