@@ -68,15 +68,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00027"></a>00027 <span class="preprocessor">#ifndef DISPLAY_HEADER</span>
 <a name="l00028"></a>00028 <span class="preprocessor"></span><span class="preprocessor">#define DISPLAY_HEADER</span>
 <a name="l00029"></a>00029 <span class="preprocessor"></span>
-<a name="l00033"></a>00033 <span class="keywordtype">int</span> <a class="code" href="_display_8c.html#afa29b062ea79ca370124df82b70b0ce5" title="Setup all display related memory buffer and glut framework.">setupDisplay</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv);
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035 <span class="keywordtype">int</span> <a class="code" href="_display_8c.html#a481567e9ce4ae7f8fc4ac8e9d2d91c93">cleanupDisplay</a>();
-<a name="l00036"></a>00036 
-<a name="l00042"></a>00042 <span class="keywordtype">int</span> <a class="code" href="_display_8h.html#addca851571e7d0e4a2ed0d83713a3184" title="Display a [len] byte sprite contained into [spriteData] at ([X], [Y]). TECHNICAL DESCRIPTION TODO...">drawSprite</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y,<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> spriteData, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> len);
-<a name="l00043"></a>00043 
-<a name="l00048"></a>00048 <span class="keywordtype">int</span> <a class="code" href="_display_8c.html#a5de872d4f34395091e277029250eb0b4" title="Clear screen.">clearScreen</a>();
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="preprocessor">#endif </span>
+<a name="l00030"></a>00030 <span class="comment">/* @brief Describe the screen width */</span>
+<a name="l00031"></a><a class="code" href="_display_8h.html#a2cd109632a6dcccaa80b43561b1ab700">00031</a> <span class="preprocessor">#define SCREEN_WIDTH 64</span>
+<a name="l00032"></a>00032 <span class="preprocessor"></span>
+<a name="l00033"></a>00033 <span class="comment">/* @brief Describe the screen height */</span>
+<a name="l00034"></a><a class="code" href="_display_8h.html#a25f7ae536603397e929ff4941e253200">00034</a> <span class="preprocessor">#define SCREEN_HEIGTH 32</span>
+<a name="l00035"></a>00035 <span class="preprocessor"></span>
+<a name="l00036"></a>00036 <span class="comment">/* @brief Describe the screen */</span>
+<a name="l00037"></a><a class="code" href="_display_8h.html#a7ca5e0dffc790d1f46bc07dd5f6c810f">00037</a> <span class="preprocessor">#define SCREEN_RATIO (SCREEN_WIDTH / SCREEN_HEIGTH)</span>
+<a name="l00038"></a>00038 <span class="preprocessor"></span>
+<a name="l00039"></a>00039 <span class="comment">/* @brief Describ the theorical time between 2 frames */</span>
+<a name="l00040"></a><a class="code" href="_display_8h.html#a0ee93fbb701859705213344c5514f6a9">00040</a> <span class="preprocessor">#define DISPLAY_IDLE_TIME 16</span>
+<a name="l00041"></a>00041 <span class="preprocessor"></span>
+<a name="l00045"></a>00045 <span class="keywordtype">int</span> <a class="code" href="_display_8c.html#afa29b062ea79ca370124df82b70b0ce5" title="Setup all display related memory buffer and glut framework.">setupDisplay</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv);
+<a name="l00046"></a>00046 
+<a name="l00050"></a>00050 <span class="keywordtype">int</span> <a class="code" href="_display_8c.html#a481567e9ce4ae7f8fc4ac8e9d2d91c93" title="Cleanup all display related variable and memory segments.">cleanupDisplay</a>();
+<a name="l00051"></a>00051 
+<a name="l00057"></a>00057 <span class="keywordtype">int</span> <a class="code" href="_display_8h.html#addca851571e7d0e4a2ed0d83713a3184" title="Display a [len] byte sprite contained into [spriteData] at ([X], [Y]). TECHNICAL DESCRIPTION TODO...">drawSprite</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> X, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Y,<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> spriteData, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> len);
+<a name="l00058"></a>00058 
+<a name="l00063"></a>00063 <span class="keywordtype">int</span> <a class="code" href="_display_8c.html#a5de872d4f34395091e277029250eb0b4" title="Clear screen.">clearScreen</a>();
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 <span class="preprocessor">#endif </span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -93,7 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 2 2011 17:59:40 for C8E by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 2 2011 18:06:22 for C8E by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

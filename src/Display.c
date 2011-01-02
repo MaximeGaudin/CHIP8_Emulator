@@ -36,16 +36,17 @@
 
 #include "Logs.h"
 
-#define SCREEN_WIDTH 64
-#define SCREEN_HEIGTH 32
-#define SCREEN_RATIO 10
-
-#define DISPLAY_IDLE_TIME 16
-
 static unsigned char* bitmap;
 
-void render();
-void reshape(int width, int height);
+/**
+  * @brief Rendering function : Translation pixel information from meory space to the screen space
+  */
+static void render();
+
+/**
+  * @brief Recomputation  in case of display resizing.
+  */
+static void reshape(int width, int height);
 
 int setupDisplay(int argc, char** argv) {
     bitmap = (unsigned char*)calloc(SCREEN_WIDTH * SCREEN_HEIGTH, sizeof(unsigned char));
@@ -68,7 +69,11 @@ int cleanupDisplay() {
     return 0;
 }
 
-void reshape(int width, int height) {
+int clearScreen() {
+    return (bitmap == memset(bitmap, 0, SCREEN_WIDTH * SCREEN_HEIGTH)) ? 0 : 1;
+}
+
+static void reshape(int width, int height) {
     glViewport(0,0,width,height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -81,7 +86,7 @@ void reshape(int width, int height) {
     glMatrixMode(GL_MODELVIEW);
 }
 
-void render() {
+static void render() {
     int i = 0;
 
     addEntry(LOW_LEVEL_OPERATION, "Drawing ...");
@@ -105,8 +110,4 @@ void render() {
     addEntry(LOW_LEVEL_OPERATION, "Drawing done.");
 
     glutPostRedisplay();
-}
-
-int clearScreen() {
-    return (bitmap == memset(bitmap, 0, SCREEN_WIDTH * SCREEN_HEIGTH)) ? 0 : 1;
 }
