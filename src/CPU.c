@@ -26,10 +26,10 @@
 
 #include "CPU.h"
 
-#ifdef WINDOWS
-#include <GL/glut.h>
-#else
+#ifdef APPLE
 #include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
 #endif
 
 #include <stdlib.h>

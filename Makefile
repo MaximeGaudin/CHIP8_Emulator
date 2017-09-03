@@ -1,7 +1,7 @@
 CC=gcc
-CFLAGS=-W -Wall -Wextra -std=c99 -ansi -pedantic -Wno-write-strings
+CFLAGS=-W -Wall -Wextra -std=c99 -ansi -pedantic -Wno-write-strings -lglut -lGLU -lGL 
 LDFLAGS=
-APPLEFLAGS=-framework GLUT -framework OPENGL
+APPLEFLAGS=
 EXEC=C8E
 
 SRC_DIR=src/
